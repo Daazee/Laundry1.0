@@ -1,0 +1,91 @@
+﻿@model Laundry.Model.Clothing
+@{
+    ViewBag.Title = "Clothing Update";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@*<script src="~/Scripts/jquery-1.10.2.js"></script>*@
+<h2>Cloth Entry</h2>
+<hr/>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="container">
+            <div  class="bg-success">
+            @if (ViewData["Message"] != null && ViewData["Message"].ToString() != "")
+                {
+                @ViewData["Message"];
+                }
+        </div>
+    </div>
+        <div class="container">
+            <div class="form-group">
+
+                @Html.LabelFor(model => model.ClothId, new { @class = "control-label text-right col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.ClothId, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ClothId)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ClothDesc, new { @class = "control-label text-right col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.ClothDesc, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ClothDesc)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Amount, new { @class = "control-label text-right col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Amount, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Amount)
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" name="save" id="save" class="btn btn-default btn-lg" />
+                </div>
+            </div>
+            <div style="display:none">
+                @Html.TextBox("Flag")
+            </div>
+        </div>
+    </div>
+}
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#Flag').val('false');
+            $('#ClothId').blur(function () {
+                id = $('#ClothId').val();
+                $.ajax({
+                    type: "GET",
+
+                    url: '@Url.Action("Search", new { Controller="ClothingUpdate", Area= "Admin" })',
+
+                    data: {
+                        id: id
+                    },
+                    success: function (response) {
+                        console.log(response)
+                        $('#ClothDesc').val(response.ClothDesc);
+                        $('#Amount').val(response.Amount);
+                        $("#Flag").val("true");
+                    },
+
+                    failure: function (msg) {
+                        // $('#output').text(msg);
+
+                    }
+
+                });
+            });
+        });
+
+    </script>
+}
+
+
+
+

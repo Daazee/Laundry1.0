@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Laundry App</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("Cloth Entry", "Create", new { Controller = "ClothingUpdate", Area = "Admin" })</li>*@
+                    <li class="dropdown">
+                    @*@Html.ActionLink("Settings", "CodesMenu", new { Controller = "CodeSettings", Area = "Admin" })*@
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Cloth Setup", "Create", new { Controller = "ClothingUpdate", Area = "Admin" })</li>
+                            <li>@Html.ActionLink("Company Setup", "CompanyRegistration", new { Controller = "Registration", Area = "Security" })</li>
+                            <li>@Html.ActionLink("Colour Setup", "CodesEntry", new { Controller = "CodeSettings", Area = "Admin", code_type = "Cod001", code_type_desc = "Color" })</li>
+                            <li>@Html.ActionLink("New Setup", "CodesEntry", new { Controller = "CodeSettings", Area = "Admin", code_type = "Cod001", code_type_desc = "Color" })</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("Manage Laundry Man", "ListLaundryMan", new { Controller = "ManageLaundryMan", Area = "Admin" })</li>
+                    <li>@Html.ActionLink("Price List", "PriceList", new { Controller = "ClothingUpdate", Area = "Admin" })</li>
+                    <li>@Html.ActionLink("Sales Report", "SalesReport", new { Controller = "Report", Area = "Admin" })</li>
+                    <li>@Html.ActionLink("Approve Remittance", "ConfirmRemittance", new { Controller = "Remittance", Area = "Admin" })</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Session["Username"] != null)
+                    {
+                        <li>@Html.ActionLink("Welcome " + @Session["Username"].ToString(), "", new { Controller = "", Area = "" })</li>
+                    }
+                    <li>@Html.ActionLink("Logout", "Logout", new { Controller = "Access", Area = "Security" })</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year -  DeeProg</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

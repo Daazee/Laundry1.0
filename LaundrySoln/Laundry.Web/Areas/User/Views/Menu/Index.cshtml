@@ -1,0 +1,83 @@
+﻿<style>
+    .slide1 {
+        background-image: url('../Images/images3.jpg');
+        height: 400px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    .slide2{
+        background-image:url('../Images/images4.jpg');
+        height:400px;
+        background-repeat:no-repeat;
+        background-position:center;
+        background-size:cover;
+    }
+    .slide3{
+        background-image:url('../Images/images5.jpg');
+        height:400px;
+        background-repeat:no-repeat;
+        background-position:center;
+        background-size:cover;
+    }
+    .carousel-caption h1{
+        font-size:5.4em;
+        font-family:'pacificio', cursive;
+        padding-bottom:.4em;
+    }
+      .carousel-caption p{
+        font-size:2em;
+    }
+</style>
+@{
+    ViewBag.Title = "Laundry man menu";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<div class="container">
+    <div id="theCarousel" class="carousel slide" data-ride="carousel" style="margin:2px;">
+        <ol class="carousel-indicators">
+            <li data-target="#theCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#theCarousel" data-slide-to="1" </li>
+            <li data-target="#theCarousel" data-slide-to="2"</li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="slide1"></div>
+                <div class="carousel-caption" style="width:400px;">
+                    <br/>
+                    <h1>Elegant Pressing</h1>
+
+                </div>
+            </div>
+
+
+            <div class="item">
+                <div class="slide2"></div>
+                <div class="carousel-caption">
+                    <h1>Super Clean Washing Machine</h1>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="slide3"></div>
+                <div class="carousel-caption">
+                    <h1>Competent Laundry Operator</h1>
+                    @*<p>Thousands of Backgrounds for free</p>*@
+                </div>
+            </div>
+
+        </div>
+
+        <!--This is where the event is being fired-->
+        <a class="left carousel-control" href="#theCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <a class="right carousel-control" href="#theCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+
+
+    </div>
+</div>
+<div style="height:500px"></div>
+ 
+@*<h2>Index</h2>*@
+

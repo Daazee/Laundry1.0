@@ -1,0 +1,2385 @@
+<!DOCTYPE html>
+<!-- saved from url=(0084)http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery -->
+<html itemscope="" itemtype="http://schema.org/QAPage"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>How to get a table cell value using jQuery? - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta property="og:type" content="website">    
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded&amp;a">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="How to get a table cell value using jQuery?">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="I am trying to work out how to get the value of table cell for each row using jQuery.
+
+My table looks like this:
+
+&amp;lt;table id=&quot;mytable&quot;&amp;gt;
+  &amp;lt;tr&amp;gt;
+    &amp;lt;th&amp;gt;Customer Id&amp;lt;/th&amp;gt;
+    ">
+    <meta property="og:url" content="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery">
+    <link rel="canonical" href="./How to get a table cell value using jQuery_ - Stack Overflow_files/How to get a table cell value using jQuery_ - Stack Overflow.html">
+
+    
+    
+    <script type="text/javascript" async="" src="./How to get a table cell value using jQuery_ - Stack Overflow_files/ados"></script><script async="" src="./How to get a table cell value using jQuery_ - Stack Overflow_files/quant.js"></script><script async="" src="./How to get a table cell value using jQuery_ - Stack Overflow_files/beacon.js"></script><script async="" src="./How to get a table cell value using jQuery_ - Stack Overflow_files/analytics.js"></script><script type="text/javascript" async="" src="./How to get a table cell value using jQuery_ - Stack Overflow_files/ados.js"></script><script src="./How to get a table cell value using jQuery_ - Stack Overflow_files/jquery.min.js"></script>
+    <script src="./How to get a table cell value using jQuery_ - Stack Overflow_files/stub.en.js"></script>
+    <link rel="stylesheet" type="text/css" href="./How to get a table cell value using jQuery_ - Stack Overflow_files/all.css">
+
+            <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;How to get a table cell value using jQuery?&#39;" href="http://stackoverflow.com/feeds/question/376081">
+            <meta name="twitter:app:country" content="US">
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:iphone" content="871299723">
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery">
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:ipad" content="871299723">
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery">
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:0,shownCommentCount:0,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:376081});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '376081');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1454067508,"networkMetaHostname":"meta.stackexchange.com","routeName":"Questions/Show","styleCode":true,"enableUserHovercards":true,"snippets":{"enabled":true,"domain":"stacksnippets.net"},"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"enableSocialMediaInSharePopup":true},"user":{"fkey":"21a2e64caf724fc4a8b427b14116c663","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"123fb7796e67","js/moderator.en.js":"481e310df8f0","js/full-anon.en.js":"0653d56bbc68","js/full.en.js":"218d05fe49c0","js/wmd.en.js":"61a96e87ddeb","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"f58acd4f09d3","js/help.en.js":"f9152eb55343","js/tageditor.en.js":"a5375c31ec6b","js/tageditornew.en.js":"c24e347fa599","js/inline-tag-editing.en.js":"de80429b1816","js/revisions.en.js":"1411a789db48","js/review.en.js":"ffa577bcc5f2","js/tagsuggestions.en.js":"b278f9a0b23b","js/post-validation.en.js":"3b290a1bda10","js/explore-qlist.en.js":"e71f14781288","js/events.en.js":"d25a13bf6ecf","js/keyboard-shortcuts.en.js":"0271490f10ff","js/external-editor.en.js":"d3d544e5946c","js/external-editor.en.js":"d3d544e5946c","js/snippet-javascript.en.js":"cc95173ecb5b","js/snippet-javascript-codemirror.en.js":"fffafdb06407"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+    
+    
+<script async="" src="./How to get a table cell value using jQuery_ - Stack Overflow_files/full-anon.en.js"></script><script async="" src="./How to get a table cell value using jQuery_ - Stack Overflow_files/snippet-javascript.en.js"></script><script async="" src="./How to get a table cell value using jQuery_ - Stack Overflow_files/post-validation.en.js"></script><script async="" src="./How to get a table cell value using jQuery_ - Stack Overflow_files/prettify-full.en.js"></script><script type="text/javascript" src="./How to get a table cell value using jQuery_ - Stack Overflow_files/adFeedback.js"></script><link rel="stylesheet" href="./How to get a table cell value using jQuery_ - Stack Overflow_files/adFeedback.css"></head>
+<body class="question-page new-topbar">
+    <noscript>&lt;div id="noscript-padding"&gt;&lt;/div&gt;</noscript>
+    
+
+
+
+
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://stackoverflow.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+                    <a href="http://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+            </div>
+
+
+
+
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link js-gps-track" href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=multicollider" data-gps-track="site_switcher.click({ item_type:9 })">
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Stack Overflow Careers
+                    </a>
+                </li>
+        </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f376081%2fhow-to-get-a-table-cell-value-using-jquery" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f376081%2fhow-to-get-a-table-cell-value-using-jquery" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+            </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a></h3>
+        <a href="http://blog.stackoverflow.com/" class="fr">company blog</a>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 151 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+
+    <a href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#" class="topbar-icon icon-inbox yes-hover js-inbox-button" title="Recent inbox messages">
+        <span class="hidden-text">Inbox</span>
+        <span class="unread-count" style="display:none"></span>
+    </a>
+    <a href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#" class="topbar-icon icon-achievements yes-hover js-achievements-button " data-unread-class="" title="Recent achievements: reputation, badges, and privileges earned">
+        <span class="hidden-text">Reputation and Badges</span>
+        <span class="unread-count" style="display:none">
+            
+        </span>
+    </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <div class="links-container">
+                <span class="topbar-menu-links">
+                                    <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f376081%2fhow-to-get-a-table-cell-value-using-jquery" class="login-link">sign up</a>
+                                <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f376081%2fhow-to-get-a-table-cell-value-using-jquery" class="login-link">log in</a>
+
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                            <a href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                    </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="http://stackoverflow.com/search" method="get" autocomplete="off">
+                    <input name="q" type="text" placeholder="search" value="" tabindex="1" autocomplete="off" maxlength="240">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                            <li><a id="nav-jobs" href="http://stackoverflow.com/jobs">Jobs</a></li>
+                        <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://stackoverflow.com/help/badges">Badges</a></li>
+                                            </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+    <link itemprop="image" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+
+<div id="herobox-mini">
+    <div id="hero-content">
+        <span id="controls">
+                <a href="http://stackoverflow.com/users/signup?ssrc=hero&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f376081%2fhow-to-get-a-table-cell-value-using-jquery" id="tell-me-more" class="button">Sign up</a>
+            <span id="close"><a title="click to dismiss">×</a></span>
+        </span>
+        <div id="blurb">
+            Stack Overflow is a community of 4.7 million programmers, just like you, helping each other. Join them; it only takes a minute:
+        </div>        
+    </div>
+    <script>
+        StackExchange.ready(function() {
+            var clickSource = $("body").attr("class") + '-mini';
+            var location = 0;
+            if ($("body").hasClass("questions-page")) {
+                clickSource = 'questionpagemini';
+                location = 2;
+            } else if ($("body").hasClass("question-page")) {
+                clickSource = 'questionpagemini';
+                location = 2;
+            } else if ($("body").hasClass("home-page")) {
+                clickSource = 'homepagemini';
+                location = 4;
+            }
+
+            $('#tell-me-more').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+                });
+            });
+            $('#herobox-mini #close').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: "close", location: location }, true);
+                });
+                $.cookie("hero", "none", { path: "/", expires: 365 });
+                var $hero = $("#herobox-mini");
+                $hero.slideUp('fast', function () { $hero.remove(); });
+                return false;
+            });
+        });
+    </script>
+</div>
+			<div id="question-header">
+                <h1 itemprop="name"><a href="./How to get a table cell value using jQuery_ - Stack Overflow_files/How to get a table cell value using jQuery_ - Stack Overflow.html" class="question-hyperlink">How to get a table cell value using jQuery?</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="376081" id="question">
+
+    <script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1039639177",4).setZone(43); });
+            </script>
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk1039639177"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjozMjI1MTQsImNoIjoxMTc4LCJjayI6e30sImNyIjoxMTk1Nzc4LCJkaSI6ImJiMDExYTA5MDMzYzRkOTlhMzIzMzlkMDc3OGEyZDg3IiwiZG0iOjEsImZjIjoxMjY5MTM3LCJmbCI6ODY0MjI1LCJpcCI6IjQxLjU4LjExNy43NiIsImt3IjoianF1ZXJ5IiwibnciOjIyLCJwYyI6MCwiZWMiOjAsInByIjoxNjA0LCJydCI6MSwicmYiOiJodHRwczovL3d3dy5nb29nbGUuY29tLm5nLyIsInN0Ijo4Mjc3LCJ1ayI6InVlMS1kYWY4MTAyN2I5ZWM0NGM1ODMxYzc4MWI3MTY5NzA5ZCIsInpuIjo0MywidHMiOjE0NTQwNjc1MTE2NTYsImJmIjp0cnVlLCJwbiI6ImFkemVyazEwMzk2MzkxNzciLCJ1ciI6Imh0dHA6Ly9jYXJlZXJzLnN0YWNrb3ZlcmZsb3cuY29tL3Byb2R1Y3RzP3V0bV9zb3VyY2U9c3RhY2tvdmVyZmxvdy5jb20mdXRtX21lZGl1bT1hZCZ1dG1fY2FtcGFpZ249ZW1wbG95ZXJzLWJlc3Qtd2F5JnV0bV9jb250ZW50PWxiLXVzZSJ9&amp;s=ifLUJXtN4xINB6PWasxfYbDScFQ" rel="nofollow" target="_blank" title=""><img src="./How to get a table cell value using jQuery_ - Stack Overflow_files/5fa811fa1a3e40f1a3435478bd1364a0.png" title="" alt="" border="0" width="728" height="90"></a><div class="adzerk-vote-controls" style="display:none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input type="radio" value="12" name="downvoteReason">Uninteresting</label></li><li><label><input type="radio" value="13" name="downvoteReason">Misleading</label></li><li><label><input type="radio" value="14" name="downvoteReason">Offensive</label></li><li><label><input type="radio" value="15" name="downvoteReason">Repetitive</label></li><li><label><input type="radio" value="16" name="downvoteReason">Other</label></li></ul><a href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img height="0px" width="0px" border="0" style="position:absolute;" src="./How to get a table cell value using jQuery_ - Stack Overflow_files/i.gif"></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="376081">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">145</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#" title="This is a favorite question (click again to undo)">favorite</a>
+        <div class="favoritecount"><b>59</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>I am trying to work out how to get the value of table cell for each row using jQuery.</p>
+
+<p>My table looks like this:</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="tag">&lt;table</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"mytable"</span><span class="tag">&gt;</span><span class="pln">
+  </span><span class="tag">&lt;tr&gt;</span><span class="pln">
+    </span><span class="tag">&lt;th&gt;</span><span class="pln">Customer Id</span><span class="tag">&lt;/th&gt;</span><span class="pln">
+    </span><span class="tag">&lt;th&gt;</span><span class="pln">Result</span><span class="tag">&lt;/th&gt;</span><span class="pln">
+  </span><span class="tag">&lt;/tr&gt;</span><span class="pln">
+  </span><span class="tag">&lt;tr&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td&gt;</span><span class="pln">123</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td&gt;&lt;/td&gt;</span><span class="pln">
+  </span><span class="tag">&lt;/tr&gt;</span><span class="pln">
+  </span><span class="tag">&lt;tr&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td&gt;</span><span class="pln">456</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td&gt;&lt;/td&gt;</span><span class="pln">
+  </span><span class="tag">&lt;/tr&gt;</span><span class="pln">
+  </span><span class="tag">&lt;tr&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td&gt;</span><span class="pln">789</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td&gt;&lt;/td&gt;</span><span class="pln">
+  </span><span class="tag">&lt;/tr&gt;</span><span class="pln">
+</span><span class="tag">&lt;/table&gt;</span></code></pre>
+
+<p>I basically want to loop through the table, and get the value of the <code>Customer Id</code> column for each row.</p>
+
+<p>In the code below I have worked out that I need to do this to get it looping through each row, but I'm not sure how to get the value of the first cell in the row.</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="pln">$</span><span class="pun">(</span><span class="str">'#mytable tr'</span><span class="pun">).</span><span class="pln">each</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> cutomerId </span><span class="pun">=</span><span class="pln"> 
+</span><span class="pun">}</span></code></pre>
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/jquery" class="post-tag js-gps-track" title="show questions tagged &#39;jquery&#39;" rel="tag">jquery</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/376081" title="short permalink to this question" class="short-link" id="link-post-376081">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/376081/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/376081/revisions" title="show all edits to this post">edited <span title="2015-07-02 11:46:00Z" class="relativetime">Jul 2 '15 at 11:46</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/2630337/robert"><div class="gravatar-wrapper-32"><img src="./How to get a table cell value using jQuery_ - Stack Overflow_files/0cf88beab4437de02bc6162f27bd41f9" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/2630337/robert">Robert</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">704</span><span title="7 silver badges"><span class="badge2"></span><span class="badgecount">7</span></span><span title="24 bronze badges"><span class="badge3"></span><span class="badgecount">24</span></span>
+        </div>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info user-hover">
+    <div class="user-action-time">
+        asked <span title="2008-12-17 21:25:38Z" class="relativetime">Dec 17 '08 at 21:25</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/47212/sean-taylor"><div class="gravatar-wrapper-32"><img src="./How to get a table cell value using jQuery_ - Stack Overflow_files/31839ea2a03fbb8702088161f33305b4" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/47212/sean-taylor">Sean Taylor</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1,665</span><span title="5 gold badges"><span class="badge1"></span><span class="badgecount">5</span></span><span title="17 silver badges"><span class="badge2"></span><span class="badgecount">17</span></span><span title="23 bronze badges"><span class="badge3"></span><span class="badgecount">23</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-376081" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-376081" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#" onclick=""></a>
+        </div>         
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								10 Answers
+                                <span style="display:none;" itemprop="answerCount">10</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active">
+            active</a>
+        <a href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest">
+            oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes">
+            votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="376116"></a>
+<div id="answer-376116" class="answer accepted-answer" data-answerid="376116" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="376116">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">197</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>If you can, it might be worth using a class attribute on the TD containing the customer ID so you can write:</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="pln">$</span><span class="pun">(</span><span class="str">'#mytable tr'</span><span class="pun">).</span><span class="pln">each</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> customerId </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">find</span><span class="pun">(</span><span class="str">".customerIDCell"</span><span class="pun">).</span><span class="pln">html</span><span class="pun">();</span><span class="pln">    
+ </span><span class="pun">});</span></code></pre>
+
+<p>Essentially this is the same as the other solutions (possibly because I copypasted), but has the advantage that you won't need to change the structure of your code if you move around the columns, or even put the customer ID into a &lt; span &gt;, provided you keep the class attribute with it.</p>
+
+<p>By the way, I think you could do it in one selector:</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="pln">$</span><span class="pun">(</span><span class="str">'#mytable .customerIDCell'</span><span class="pun">).</span><span class="pln">each</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+  alert</span><span class="pun">(</span><span class="pln">$</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">html</span><span class="pun">());</span><span class="pln">
+</span><span class="pun">});</span></code></pre>
+
+<p>If that makes things easier</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/376116" title="short permalink to this answer" class="short-link" id="link-post-376116">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/376116/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/376116/revisions" title="show all edits to this post">edited <span title="2013-01-09 12:02:16Z" class="relativetime">Jan 9 '13 at 12:02</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/383635/tom-walters"><div class="gravatar-wrapper-32"><img src="./How to get a table cell value using jQuery_ - Stack Overflow_files/da54e2a0a0c1673116dcf8292811759b" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/383635/tom-walters">Tom Walters</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">8,568</span><span title="4 gold badges"><span class="badge1"></span><span class="badgecount">4</span></span><span title="28 silver badges"><span class="badge2"></span><span class="badgecount">28</span></span><span title="55 bronze badges"><span class="badge3"></span><span class="badgecount">55</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2008-12-17 21:39:13Z" class="relativetime">Dec 17 '08 at 21:39</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/22360/jennifer"><div class="gravatar-wrapper-32"><img src="./How to get a table cell value using jQuery_ - Stack Overflow_files/6e1b7c40f6051437501cb45143495294" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/22360/jennifer">Jennifer</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">3,386</span><span title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span title="13 silver badges"><span class="badge2"></span><span class="badgecount">13</span></span><span title="16 bronze badges"><span class="badge3"></span><span class="badgecount">16</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-376116" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-204127" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I would say  $('#mytable td.customerIDCell').each(function() {   alert($(this).html()); });  but +1</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/10771/matt-briggs" title="23210 reputation" class="comment-user">Matt Briggs</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#comment204127_376116"><span title="2008-12-17 21:56:22Z" class="relativetime-clean">Dec 17 '08 at 21:56</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-204132" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">:-) thanks - but what if you want to put it into a span (I may have badly formatted the span in my answer!)</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/22360/jennifer" title="3386 reputation" class="comment-user">Jennifer</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#comment204132_376116"><span title="2008-12-17 21:57:36Z" class="relativetime-clean">Dec 17 '08 at 21:57</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-14084137" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Using the class on the tr is especially helpful if you happen to have &lt;td&gt; within a &lt;tfoot&gt; (or are using &lt;td&gt; instead of &lt;th&gt;) and don't want those.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/205300/frank-luke" title="676 reputation" class="comment-user">Frank Luke</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#comment14084137_376116"><span title="2012-05-30 16:33:57Z" class="relativetime-clean">May 30 '12 at 16:33</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-14662675" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">$('#mytable tr').each(function() {     var customerId = $(this).find(".customerIDCell").html();      });</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/547706/osama-khodrog" title="306 reputation" class="comment-user">Osama khodrog</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#comment14662675_376116"><span title="2012-06-24 08:41:10Z" class="relativetime-clean">Jun 24 '12 at 8:41</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-37056993" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">but if i want to get the tr html also then what we can do</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/2618323/developer" title="2505 reputation" class="comment-user">Developer</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#comment37056993_376116"><span title="2014-06-04 12:43:41Z" class="relativetime-clean">Jun 4 '14 at 12:43</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-376116" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk977051644",4).setZone(44); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk977051644">
+            </div>
+  
+<a name="376095"></a>
+<div id="answer-376095" class="answer" data-answerid="376095" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="376095">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">85</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<pre class="default prettyprint prettyprinted"><code><span class="pln">$</span><span class="pun">(</span><span class="str">'#mytable tr'</span><span class="pun">).</span><span class="pln">each</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> customerId </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">find</span><span class="pun">(</span><span class="str">"td:first"</span><span class="pun">).</span><span class="pln">html</span><span class="pun">();</span><span class="pln">    
+</span><span class="pun">});</span></code></pre>
+
+<p>What you are doing is iterating through all the trs in the table, finding the first td in the current tr in the loop, and extracting its inner html.</p>
+
+<p>To select a particular cell, you can reference them with an index:</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="pln">$</span><span class="pun">(</span><span class="str">'#mytable tr'</span><span class="pun">).</span><span class="pln">each</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> customerId </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">find</span><span class="pun">(</span><span class="str">"td"</span><span class="pun">).</span><span class="pln">eq</span><span class="pun">(</span><span class="lit">2</span><span class="pun">).</span><span class="pln">html</span><span class="pun">();</span><span class="pln">    
+</span><span class="pun">});</span></code></pre>
+
+<p>In the above code, I will be retrieving the value of the <strong>third row</strong> (the index is zero-based, so the first cell index would be 0)</p>
+
+<hr>
+
+<p>Here's how you can do it without jQuery:</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="str">'mytable'</span><span class="pun">),</span><span class="pln"> 
+    rows </span><span class="pun">=</span><span class="pln"> table</span><span class="pun">.</span><span class="pln">getElementsByTagName</span><span class="pun">(</span><span class="str">'tr'</span><span class="pun">),</span><span class="pln">
+    i</span><span class="pun">,</span><span class="pln"> j</span><span class="pun">,</span><span class="pln"> cells</span><span class="pun">,</span><span class="pln"> customerId</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="pln">i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> j </span><span class="pun">=</span><span class="pln"> rows</span><span class="pun">.</span><span class="pln">length</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;</span><span class="pln"> j</span><span class="pun">;</span><span class="pln"> </span><span class="pun">++</span><span class="pln">i</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    cells </span><span class="pun">=</span><span class="pln"> rows</span><span class="pun">[</span><span class="pln">i</span><span class="pun">].</span><span class="pln">getElementsByTagName</span><span class="pun">(</span><span class="str">'td'</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(!</span><span class="pln">cells</span><span class="pun">.</span><span class="pln">length</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">continue</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    customerId </span><span class="pun">=</span><span class="pln"> cells</span><span class="pun">[</span><span class="lit">0</span><span class="pun">].</span><span class="pln">innerHTML</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>​</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/376095" title="short permalink to this answer" class="short-link" id="link-post-376095">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/376095/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/376095/revisions" title="show all edits to this post">edited <span title="2011-11-04 16:25:28Z" class="relativetime">Nov 4 '11 at 16:25</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/880797/andrey"><div class="gravatar-wrapper-32"><img src="./How to get a table cell value using jQuery_ - Stack Overflow_files/bace3dcc4a83523d93399ab2bd1f3728" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/880797/andrey">Andrey</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">817</span><span title="4 silver badges"><span class="badge2"></span><span class="badgecount">4</span></span><span title="14 bronze badges"><span class="badge3"></span><span class="badgecount">14</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2008-12-17 21:28:45Z" class="relativetime">Dec 17 '08 at 21:28</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/44084/andreas-grech"><div class="gravatar-wrapper-32"><img src="./How to get a table cell value using jQuery_ - Stack Overflow_files/c398dd0c2ca7d5281d0a83242a924e76" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/44084/andreas-grech">Andreas Grech</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 47502" dir="ltr">47.5k</span><span title="74 gold badges"><span class="badge1"></span><span class="badgecount">74</span></span><span title="240 silver badges"><span class="badge2"></span><span class="badgecount">240</span></span><span title="315 bronze badges"><span class="badge3"></span><span class="badgecount">315</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-376095" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="1" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-3374735" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Thanks, this was more useful to me as I don't have control on the markup of the document I wish to parse using jQuery. So being able to use "td:first", "td:last", etc was a great help.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/208793/atomicules" title="1375 reputation" class="comment-user">atomicules</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#comment3374735_376095"><span title="2010-07-16 09:33:38Z" class="relativetime-clean">Jul 16 '10 at 9:33</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-11540602" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">+1 nice post thanks! :)</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/217646/anand-thangappan" title="1900 reputation" class="comment-user">Anand Thangappan</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#comment11540602_376095"><span title="2012-02-07 09:38:22Z" class="relativetime-clean">Feb 7 '12 at 9:38</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-17695897" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">eq(2) would get value of third column, not third row.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/436341/40-love" title="4276 reputation" class="comment-user">40-Love</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#comment17695897_376095"><span title="2012-10-23 16:23:08Z" class="relativetime-clean">Oct 23 '12 at 16:23</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-40823586" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">What is eq(2) in your code ? I mean 2 is index of which td or tr ?</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/3674931/singh" title="551 reputation" class="comment-user">Singh</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#comment40823586_376095"><span title="2014-09-26 11:08:00Z" class="relativetime-clean">Sep 26 '14 at 11:08</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-49792991" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Singh The element at index 2 of the <code>td</code> collection returned by the <code>find("td")</code> function.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/44084/andreas-grech" title="47502 reputation" class="comment-user">Andreas Grech</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#comment49792991_376095"><span title="2015-06-16 18:54:52Z" class="relativetime-clean">Jun 16 '15 at 18:54</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-376095" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#" onclick="">show <b>1</b> more comment</a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="376108"></a>
+<div id="answer-376108" class="answer" data-answerid="376108" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="376108">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">6</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>a less-jquerish approach:</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="pln">$</span><span class="pun">(</span><span class="str">'#mytable tr'</span><span class="pun">).</span><span class="pln">each</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(!</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">rowIndex</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">return</span><span class="pun">;</span><span class="pln"> </span><span class="com">// skip first row</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> customerId </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">cells</span><span class="pun">[</span><span class="lit">0</span><span class="pun">].</span><span class="pln">innerHTML</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">});</span></code></pre>
+
+<p>this can obviously be changed to work with not-the-first cells.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/376108" title="short permalink to this answer" class="short-link" id="link-post-376108">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/376108/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/376108/revisions" title="show all edits to this post">edited <span title="2008-12-17 21:57:27Z" class="relativetime">Dec 17 '08 at 21:57</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2008-12-17 21:34:32Z" class="relativetime">Dec 17 '08 at 21:34</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/4435/jimmy"><div class="gravatar-wrapper-32"><img src="./How to get a table cell value using jQuery_ - Stack Overflow_files/67f11df8aec61f878051a101032c6b2d" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/4435/jimmy">Jimmy</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 45192" dir="ltr">45.2k</span><span title="11 gold badges"><span class="badge1"></span><span class="badgecount">11</span></span><span title="89 silver badges"><span class="badge2"></span><span class="badgecount">89</span></span><span title="123 bronze badges"><span class="badge3"></span><span class="badgecount">123</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-376108" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-376108" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="376091"></a>
+<div id="answer-376091" class="answer" data-answerid="376091" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="376091">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">5</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<pre class="default prettyprint prettyprinted"><code><span class="pln">$</span><span class="pun">(</span><span class="str">'#mytable tr'</span><span class="pun">).</span><span class="pln">each</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="com">// need this to skip the first row</span><span class="pln">
+  </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">$</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">find</span><span class="pun">(</span><span class="str">"td:first"</span><span class="pun">).</span><span class="pln">length </span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> cutomerId </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">find</span><span class="pun">(</span><span class="str">"td:first"</span><span class="pun">).</span><span class="pln">html</span><span class="pun">();</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">});</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/376091" title="short permalink to this answer" class="short-link" id="link-post-376091">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/376091/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/376091/revisions" title="show all edits to this post">edited <span title="2011-01-31 21:50:22Z" class="relativetime">Jan 31 '11 at 21:50</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/48082/cheeso"><div class="gravatar-wrapper-32"><img src="./How to get a table cell value using jQuery_ - Stack Overflow_files/18bff049e78e8d77a620f8ac4f15b2a0" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/48082/cheeso">Cheeso</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 106700" dir="ltr">107k</span><span title="51 gold badges"><span class="badge1"></span><span class="badgecount">51</span></span><span title="329 silver badges"><span class="badge2"></span><span class="badgecount">329</span></span><span title="548 bronze badges"><span class="badge3"></span><span class="badgecount">548</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2008-12-17 21:28:04Z" class="relativetime">Dec 17 '08 at 21:28</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/2788/strelok"><div class="gravatar-wrapper-32"><img src="./How to get a table cell value using jQuery_ - Stack Overflow_files/28acae7d7979a1cd603921a198532e7d" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/2788/strelok">Strelok</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 23570" dir="ltr">23.6k</span><span title="4 gold badges"><span class="badge1"></span><span class="badgecount">4</span></span><span title="41 silver badges"><span class="badge2"></span><span class="badgecount">41</span></span><span title="70 bronze badges"><span class="badge3"></span><span class="badgecount">70</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-376091" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-204058" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">There's no need to skip the first row, because it contains &lt;th&gt;, not &lt;td&gt;, so their data won't be extracted</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/44084/andreas-grech" title="47502 reputation" class="comment-user">Andreas Grech</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#comment204058_376091"><span title="2008-12-17 21:32:37Z" class="relativetime-clean">Dec 17 '08 at 21:32</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-3378432" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">").legth  should be ").length</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/125981/mark-schultheiss" title="15779 reputation" class="comment-user">Mark Schultheiss</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#comment3378432_376091"><span title="2010-07-16 15:48:01Z" class="relativetime-clean">Jul 16 '10 at 15:48</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-376091" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="14572154"></a>
+<div id="answer-14572154" class="answer" data-answerid="14572154" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="14572154">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">5</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Try this,</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="pln">$</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+$</span><span class="pun">(</span><span class="str">".items"</span><span class="pun">).</span><span class="kwd">delegate</span><span class="pun">(</span><span class="str">"tr.classname"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"click"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">data</span><span class="pun">){</span><span class="pln">
+            alert</span><span class="pun">(</span><span class="pln">data</span><span class="pun">.</span><span class="pln">target</span><span class="pun">.</span><span class="pln">innerHTML</span><span class="pun">);</span><span class="com">//this will show the inner html</span><span class="pln">
+    alert</span><span class="pun">(</span><span class="pln">$</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">find</span><span class="pun">(</span><span class="str">'td:eq(1)'</span><span class="pun">).</span><span class="pln">html</span><span class="pun">());</span><span class="com">//this will alert the value in the 1st column.</span><span class="pln">
+    </span><span class="pun">});</span><span class="pln">
+</span><span class="pun">});</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/14572154" title="short permalink to this answer" class="short-link" id="link-post-14572154">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/14572154/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2013-01-28 22:08:28Z" class="relativetime">Jan 28 '13 at 22:08</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/735597/nikhil-dinesh"><div class="gravatar-wrapper-32"><img src="./How to get a table cell value using jQuery_ - Stack Overflow_files/8hPeY.jpg" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/735597/nikhil-dinesh">Nikhil Dinesh</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1,824</span><span title="21 silver badges"><span class="badge2"></span><span class="badgecount">21</span></span><span title="26 bronze badges"><span class="badge3"></span><span class="badgecount">26</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-14572154" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-14572154" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="2306908"></a>
+<div id="answer-2306908" class="answer" data-answerid="2306908" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="2306908">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">3</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Y not you use id for that column?
+say that:</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="pln">    </span><span class="tag">&lt;table</span><span class="pln"> </span><span class="atn">width</span><span class="pun">=</span><span class="atv">"300"</span><span class="pln"> </span><span class="atn">border</span><span class="pun">=</span><span class="atv">"1"</span><span class="tag">&gt;</span><span class="pln">
+          </span><span class="tag">&lt;tr&gt;</span><span class="pln">
+            </span><span class="tag">&lt;td&gt;</span><span class="pln">first</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+          </span><span class="tag">&lt;/tr&gt;</span><span class="pln">
+          </span><span class="tag">&lt;tr&gt;</span><span class="pln">
+            </span><span class="tag">&lt;td&gt;</span><span class="pln">second</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+          </span><span class="tag">&lt;/tr&gt;</span><span class="pln"> 
+          </span><span class="tag">&lt;tr&gt;</span><span class="pln">
+            </span><span class="tag">&lt;td&gt;</span><span class="pln">blah blah</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+            </span><span class="tag">&lt;td&gt;</span><span class="pln">blah blah</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+            </span><span class="tag">&lt;td</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"result"</span><span class="tag">&gt;</span><span class="pln">Where the result should occur</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+          </span><span class="tag">&lt;/tr&gt;</span><span class="pln">
+    </span><span class="tag">&lt;/table&gt;</span><span class="pln">
+
+
+</span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="tag">&gt;</span><span class="pln">
+        $</span><span class="pun">(</span><span class="str">'#result'</span><span class="pun">).</span><span class="pln">html</span><span class="pun">(</span><span class="str">"The result is...."</span><span class="pun">);</span><span class="pln">
+</span><span class="tag">&lt;/script&gt;</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/2306908" title="short permalink to this answer" class="short-link" id="link-post-2306908">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/2306908/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/2306908/revisions" title="show all edits to this post">edited <span title="2010-02-21 18:36:08Z" class="relativetime">Feb 21 '10 at 18:36</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2010-02-21 18:30:10Z" class="relativetime">Feb 21 '10 at 18:30</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/278216/moh3n-moh"><div class="gravatar-wrapper-32"><img src="./How to get a table cell value using jQuery_ - Stack Overflow_files/801279c941a584217faac80115550a8f" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/278216/moh3n-moh">MOH3n MOH</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">31</span><span title="2 bronze badges"><span class="badge3"></span><span class="badgecount">2</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-2306908" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-2306908" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="5625176"></a>
+<div id="answer-5625176" class="answer" data-answerid="5625176" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="5625176">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">3</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>This works</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="pln">$</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">var</span><span class="pln"> row </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> row </span><span class="pun">&lt;</span><span class="pln"> </span><span class="lit">3</span><span class="pun">;</span><span class="pln"> row</span><span class="pun">++)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">var</span><span class="pln"> col </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> col </span><span class="pun">&lt;</span><span class="pln"> </span><span class="lit">3</span><span class="pun">;</span><span class="pln"> col</span><span class="pun">++)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            $</span><span class="pun">(</span><span class="str">"#tbl"</span><span class="pun">).</span><span class="pln">children</span><span class="pun">().</span><span class="pln">children</span><span class="pun">()[</span><span class="pln">row</span><span class="pun">].</span><span class="pln">children</span><span class="pun">[</span><span class="pln">col</span><span class="pun">].</span><span class="pln">innerHTML </span><span class="pun">=</span><span class="pln"> </span><span class="str">"H!"</span><span class="pun">;</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">});</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/5625176" title="short permalink to this answer" class="short-link" id="link-post-5625176">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/5625176/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2011-04-11 17:35:43Z" class="relativetime">Apr 11 '11 at 17:35</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/351709/david"><div class="gravatar-wrapper-32"><img src="./How to get a table cell value using jQuery_ - Stack Overflow_files/7c489a75f32125514955bd4b3e85f368" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/351709/david">David</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1,771</span><span title="9 gold badges"><span class="badge1"></span><span class="badgecount">9</span></span><span title="24 silver badges"><span class="badge2"></span><span class="badgecount">24</span></span><span title="42 bronze badges"><span class="badge3"></span><span class="badgecount">42</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-5625176" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-5625176" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="5140870"></a>
+<div id="answer-5140870" class="answer" data-answerid="5140870" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="5140870">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">2</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>try this :</p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="dec">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"&gt;</span><span class="pln">
+
+</span><span class="tag">&lt;html&gt;</span><span class="pln">
+</span><span class="tag">&lt;head&gt;</span><span class="pln">
+    </span><span class="tag">&lt;title&gt;</span><span class="pln">Untitled</span><span class="tag">&lt;/title&gt;</span><span class="pln">
+
+</span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="tag">&gt;</span><span class="pun">&lt;!--</span><span class="pln">
+
+</span><span class="kwd">function</span><span class="pln"> getVal</span><span class="pun">(</span><span class="pln">e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> targ</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(!</span><span class="pln">e</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">var</span><span class="pln"> e </span><span class="pun">=</span><span class="pln"> window</span><span class="pun">.</span><span class="pln">event</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">e</span><span class="pun">.</span><span class="pln">target</span><span class="pun">)</span><span class="pln"> targ </span><span class="pun">=</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">target</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">else</span><span class="pln"> </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">e</span><span class="pun">.</span><span class="pln">srcElement</span><span class="pun">)</span><span class="pln"> targ </span><span class="pun">=</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">srcElement</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">targ</span><span class="pun">.</span><span class="pln">nodeType </span><span class="pun">==</span><span class="pln"> </span><span class="lit">3</span><span class="pun">)</span><span class="pln"> </span><span class="com">// defeat Safari bug</span><span class="pln">
+        targ </span><span class="pun">=</span><span class="pln"> targ</span><span class="pun">.</span><span class="pln">parentNode</span><span class="pun">;</span><span class="pln">
+
+    alert</span><span class="pun">(</span><span class="pln">targ</span><span class="pun">.</span><span class="pln">innerHTML</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+onload </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> t </span><span class="pun">=</span><span class="pln"> document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="str">"main"</span><span class="pun">).</span><span class="pln">getElementsByTagName</span><span class="pun">(</span><span class="str">"td"</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="pln"> </span><span class="kwd">var</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;</span><span class="pln"> t</span><span class="pun">.</span><span class="pln">length</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">++</span><span class="pln"> </span><span class="pun">)</span><span class="pln">
+        t</span><span class="pun">[</span><span class="pln">i</span><span class="pun">].</span><span class="pln">onclick </span><span class="pun">=</span><span class="pln"> getVal</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="tag">&lt;/script&gt;</span><span class="pln">
+
+
+
+</span><span class="tag">&lt;body&gt;</span><span class="pln">
+
+</span><span class="tag">&lt;table</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"main"</span><span class="tag">&gt;&lt;tr&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td&gt;</span><span class="pln">1</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td&gt;</span><span class="pln">2</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td&gt;</span><span class="pln">3</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td&gt;</span><span class="pln">4</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+</span><span class="tag">&lt;/tr&gt;&lt;tr&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td&gt;</span><span class="pln">5</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td&gt;</span><span class="pln">6</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td&gt;</span><span class="pln">7</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td&gt;</span><span class="pln">8</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+</span><span class="tag">&lt;/tr&gt;&lt;tr&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td&gt;</span><span class="pln">9</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td&gt;</span><span class="pln">10</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td&gt;</span><span class="pln">11</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td&gt;</span><span class="pln">12</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+</span><span class="tag">&lt;/tr&gt;&lt;/table&gt;</span><span class="pln">
+
+</span><span class="tag">&lt;/body&gt;</span><span class="pln">
+</span><span class="tag">&lt;/html&gt;</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/5140870" title="short permalink to this answer" class="short-link" id="link-post-5140870">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/5140870/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/5140870/revisions" title="show all edits to this post">edited <span title="2011-03-01 05:18:20Z" class="relativetime">Mar 1 '11 at 5:18</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/486620/kevin-stricker"><div class="gravatar-wrapper-32"><img src="./How to get a table cell value using jQuery_ - Stack Overflow_files/be35d273f59f56c8de25f74e219cca49" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/486620/kevin-stricker">Kevin Stricker</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 13087" dir="ltr">13.1k</span><span title="3 gold badges"><span class="badge1"></span><span class="badgecount">3</span></span><span title="28 silver badges"><span class="badge2"></span><span class="badgecount">28</span></span><span title="55 bronze badges"><span class="badge3"></span><span class="badgecount">55</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2011-02-28 10:36:56Z" class="relativetime">Feb 28 '11 at 10:36</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/637510/mohammad"><div class="gravatar-wrapper-32"><img src="./How to get a table cell value using jQuery_ - Stack Overflow_files/a84bccbd5e03baca9bb08f54485fe2a4" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/637510/mohammad">mohammad</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">39</span><span title="1 bronze badge"><span class="badge3"></span><span class="badgecount">1</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-5140870" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-5140870" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="6772061"></a>
+<div id="answer-6772061" class="answer" data-answerid="6772061" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="6772061">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">1</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<pre class="default prettyprint prettyprinted"><code><span class="pln">$</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+     </span><span class="kwd">var</span><span class="pln"> customerId
+     $</span><span class="pun">(</span><span class="str">"#mytable td"</span><span class="pun">).</span><span class="pln">click</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+     alert</span><span class="pun">(</span><span class="pln">$</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">html</span><span class="pun">());</span><span class="pln">
+     </span><span class="pun">});</span><span class="pln">
+ </span><span class="pun">});</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/6772061" title="short permalink to this answer" class="short-link" id="link-post-6772061">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/6772061/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/6772061/revisions" title="show all edits to this post">edited <span title="2013-02-15 06:04:52Z" class="relativetime">Feb 15 '13 at 6:04</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/749232/saji89"><div class="gravatar-wrapper-32"><img src="./How to get a table cell value using jQuery_ - Stack Overflow_files/afc9686c3ca7e7473b2a7183a53a4a60" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/749232/saji89">saji89</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">717</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="10 silver badges"><span class="badge2"></span><span class="badgecount">10</span></span><span title="31 bronze badges"><span class="badge3"></span><span class="badgecount">31</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2011-07-21 06:22:27Z" class="relativetime">Jul 21 '11 at 6:22</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/855302/jithin"><div class="gravatar-wrapper-32"><img src="./How to get a table cell value using jQuery_ - Stack Overflow_files/0c47a22f31ad2778014b12d7f91c1d0f" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/855302/jithin">jithin</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">11</span><span title="1 bronze badge"><span class="badge3"></span><span class="badgecount">1</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-6772061" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-6772061" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="27880761"></a>
+<div id="answer-27880761" class="answer" data-answerid="27880761" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="27880761">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>A working example:
+<a href="http://jsfiddle.net/0sgLbynd/" rel="nofollow">http://jsfiddle.net/0sgLbynd/</a></p>
+
+<pre class="default prettyprint prettyprinted"><code><span class="tag">&lt;table&gt;</span><span class="pln">
+</span><span class="tag">&lt;tr&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td&gt;</span><span class="pln">0</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ms-vb2"</span><span class="tag">&gt;</span><span class="pln">1</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ms-vb2"</span><span class="tag">&gt;</span><span class="pln">2</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ms-vb2"</span><span class="tag">&gt;</span><span class="pln">3</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ms-vb2"</span><span class="tag">&gt;</span><span class="pln">4</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ms-vb2"</span><span class="tag">&gt;</span><span class="pln">5</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+    </span><span class="tag">&lt;td</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ms-vb2"</span><span class="tag">&gt;</span><span class="pln">6</span><span class="tag">&lt;/td&gt;</span><span class="pln">
+</span><span class="tag">&lt;/tr&gt;</span><span class="pln">
+</span><span class="tag">&lt;/table&gt;</span><span class="pln">
+
+
+$(document).ready(function () {
+//alert("sss");
+$("td").each(function () {
+    //alert($(this).html());
+    $(this).html("aaaaaaa");
+});
+});</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/27880761" title="short permalink to this answer" class="short-link" id="link-post-27880761">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/27880761/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2015-01-10 20:13:39Z" class="relativetime">Jan 10 '15 at 20:13</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/774255/gazmend-hoxha"><div class="gravatar-wrapper-32"><img src="./How to get a table cell value using jQuery_ - Stack Overflow_files/70392e9186024b241912611cd630c765" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/774255/gazmend-hoxha">Gazmend Hoxha</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">35</span><span title="6 bronze badges"><span class="badge3"></span><span class="badgecount">6</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+            
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-27880761" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-27880761" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+				    <div class="question-status">
+        <h2>                    <b>protected</b> by <a href="http://stackoverflow.com/users/-1/community">Community</a><span class="mod-flair" title="moderator">♦</span> <span dir="ltr"><span title="2012-10-19 11:55:14Z" class="relativetime">Oct 19 '12 at 11:55</span></span>
+</h2>
+        <p>
+Thank you for your interest in this question. 
+Because it has attracted low-quality or spam answers that had to be removed, posting an answer now requires 10 <a href="http://stackoverflow.com/help/whats-reputation">reputation</a> on this site.
+<br><br>
+Would you like to answer one of these <a href="http://stackoverflow.com/unanswered?fromProtectedNotice=true">unanswered questions</a> instead?
+</p>
+    </div>
+
+
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/jquery" class="post-tag" title="show questions tagged &#39;jquery&#39;" rel="tag">jquery</a>  or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2008-12-17 21:25:38Z"><b>7 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>492296 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/376081/how-to-get-a-table-cell-value-using-jquery?lastactivity" class="lastactivity-link" title="2015-07-02 11:46:00Z">7 months ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+						
+			<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1224851908",[5,17,2221]).setZone(45); });
+            </script>
+            
+        <div id="hireme">
+            <script>
+;"use strict";var _extends=Object.assign||function(n){for(var i,r,t=1;t<arguments.length;t++){i=arguments[t];for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(n[r]=i[r])}return n};(function(n){function f(){return(new Date).getTime()}function rt(n,t){return n.split(/\&/g).reduce(function(n,t){var i=t.split("=");return n[v(i[0])]=v(i[1]),n},t||{})}function ut(n,t){return Object.keys(n).filter(function(n){return t.indexOf(n)!==-1}).map(function(t){return u(t)+"="+u(n[t])}).join("&")}function y(n){return i.querySelectorAll(n)}function r(n){return i.querySelector(n)}function p(n,t,r){var u=i.createElement("script"),e="onreadystatechange",o="onload",f="readyState",s=!1;u.async=!0;u.src=n;typeof t=="function"&&(u[o]=u[e]=function(){s||u[f]&&u[f]!=="loaded"&&u[f]!=="complete"||(s=!0,typeof t=="function"&&t(u),u[o]=u[e]=null,r&&u.parentNode.removeChild(u))});nt.appendChild(u)}function w(n){var t=i.createElement("link");t.type="text/css";t.rel="stylesheet";t.href=n;tt.appendChild(t)}function ft(){return[].map.call(y(".post-taglist .post-tag"),function(n){return n.innerText}).join(";")||null}function et(){var n=t.StackExchange,i="options",r="user";return n&&n[i]&&n[i][r]&&n[i][r].accountId}function ot(n){var t,i;return n=rt(s.hash?s.hash.substr(1):"",n||{}),t=n.ac||n.accountId||et(),t&&(n.ac=t),n.tags||(i=ft(),i&&(n.tags=i)),n}function b(n){return n.innerHTML.replace(/\s+$/g,"")}function st(n,t,i,u){var c=r(n);if(c===null)return function(){};var h=null,s=null,l=f(),a=function a(){b(c)?(o(h),u(!1,f()-l)):s=e(a,t)};return s=e(a,t),i&&(h=e(function(){o(s);u(!0,f()-l)},i)),function(){o(s);o(h)}}function ht(){var t="careers1",i="careers3",u=!d()||r("#careersadsdoublehigh"),f=u?1:2,n=[f+"=hireme"];return r("#"+t)&&n.push("5="+t),r("#"+i)&&n.push("6="+i),n.join("&")}function k(n,i){var r=ot(_extends({},g,{zones:ht()})),u,e;n&&(r.azt=1);i&&(r.lw=i);typeof t.innerWidth=="number"&&(r.bw=t.innerWidth);u=["zones","ip","ac","eng","prov","tags","theme","at","remote","seed","lw","azt","sysadmin","bw","nocpm"];e=l+"?"+ut(r,u);c=f();p(e)}function ct(n){function h(){u.forEach(w);e.forEach(function(n){lt(n,i[n],s,o)});typeof t.clc_after_load=="function"&&t.clc_after_load()}var i=n.cr,r=n.h,u=n.st,e=Object.keys(i),o=c?f()-c:0,s="//"+r+"/ct";h()}function lt(n,t,i,f){var h=t.cl,c=t.cn,o=t.an,l=t.utm,s=(h||[]).join(" "),e=r("#"+n);e&&(s&&(e.className+=" "+s),e.innerHTML=c.replace("&pt=0","&pt="+(f||0)),e.onmousedown=function(n){for(var t=n.target,r,f,s;t.tagName!=="A"&&t!==e;)t=t.parentNode;t!==e&&(r=[],o&&r.push("an="+o),f=[].filter.call(t.attributes,function(n){return/^data-/.test(n.name)}),f.length>0&&f.forEach(function(n){var t=n.name.replace(/^data-/,"");r.push(u(t)+"="+u(n.value))}),r.push("utm="+u(it+l)),s="",r.length>0&&(s="?"+r.join("&")),t.href=i+s)})}function d(){return y(h).length>0}function at(n){var t=i.createElement("a");return t.href=n,t.host}function vt(){var t,n;d()?(n=st(h,20,t,function(n,t){k(n,t)}),e(function(){var u=r(h),t;b(u)||(u.parentNode.removeChild(u),typeof n=="function"&&n(),t=i.createElement("img"),t.src="//"+at(l)+"/to.gif",t.style.display="none",i.body.appendChild(t))},2e3)):k()}var l=n.u,a=n.o,g=a===undefined?{}:a,t=window,s=t.location,u=t.encodeURIComponent,v=t.decodeURIComponent,i=t.document,nt=i.body,tt=i.getElementsByTagName("head")[0],e=t.setTimeout,o=t.clearTimeout,it="&utm_source="+s.hostname+"&utm_medium=ad&utm_campaign=",h="#sidebar [id^=adzerk].everyonelovesstackoverflow",c=0;t.clc={init:ct,load:vt,ls:p,as:w}}).call(null, {"u":"//clc.stackoverflow.com/p.js"});"use strict";var allowedHosts=["stackoverflow.com","serverfault.com"];(allowedHosts[0]==="*"||allowedHosts.indexOf(location.hostname)!==-1)&&window.clc.load();            </script>
+        </div>
+			  
+    
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/24192499?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">-1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/24192499/how-to-get-html-table-cell-value-through-jquery?lq=1" class="question-hyperlink">How to get HTML Table Cell Value through JQuery?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/5624704?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">4</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/5624704/how-to-set-table-cell-value-using-jquery?lq=1" class="question-hyperlink">How to set table cell value using jquery</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/1945844?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">4</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/1945844/using-jquery-how-to-check-whether-a-table-cell-is-empty-or-not?lq=1" class="question-hyperlink">Using jquery , how to check whether a table cell is empty or not?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/5612128?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">2</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/5612128/how-to-get-a-table-cell-value-using-jquery?lq=1" class="question-hyperlink">How to get a table cell value using jquery</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/9295260?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">3</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/9295260/really-basic-jquery-how-can-i-check-to-see-if-a-table-cell-has-a-value?lq=1" class="question-hyperlink">Really basic jQuery: how can I check to see if a table cell has a value?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/7914345?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/7914345/find-nested-dom-elements-using-jquery?lq=1" class="question-hyperlink">Find nested DOM elements using jQuery</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/25763999?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/25763999/jquery-get-table-cell-value?lq=1" class="question-hyperlink">jQuery - Get table cell value</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/1519206?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/1519206/get-the-table-row-cell-value?lq=1" class="question-hyperlink">get the table row cell value</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/10324668?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/10324668/how-to-return-a-table-td-tags-in-array?lq=1" class="question-hyperlink">how to return a table td tags in array?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/17081454?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/17081454/get-columns-name-or-header-text-of-gridview-using-javascript?lq=1" class="question-hyperlink">Get Columns Name or Header Text of GridView Using JavaScript</a>
+</div>					<div class="spacer more">
+				<a href="http://stackoverflow.com/questions/linked/376081?lq=1">see more linked questions…</a>
+			</div>
+	</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/31044?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted extra-large">1340
+    </div>
+</a><a href="http://stackoverflow.com/questions/31044/is-there-an-exists-function-for-jquery?rq=1" class="question-hyperlink">Is there an “exists” function for jQuery?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/171027?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted extra-large">1399
+    </div>
+</a><a href="http://stackoverflow.com/questions/171027/add-table-row-in-jquery?rq=1" class="question-hyperlink">Add table row in jQuery</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/426258?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted extra-large">2346
+    </div>
+</a><a href="http://stackoverflow.com/questions/426258/checking-a-checkbox-with-jquery?rq=1" class="question-hyperlink">Checking a checkbox with jQuery?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/503093?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted extra-large">4617
+    </div>
+</a><a href="http://stackoverflow.com/questions/503093/how-can-i-make-a-redirect-page-using-jquery?rq=1" class="question-hyperlink">How can I make a redirect page using jQuery?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/5612128?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">2
+    </div>
+</a><a href="http://stackoverflow.com/questions/5612128/how-to-get-a-table-cell-value-using-jquery?rq=1" class="question-hyperlink">How to get a table cell value using jquery</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/6677035?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted extra-large">1033
+    </div>
+</a><a href="http://stackoverflow.com/questions/6677035/jquery-scroll-to-element?rq=1" class="question-hyperlink">jQuery scroll to element</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/14994391?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted extra-large">4536
+    </div>
+</a><a href="http://stackoverflow.com/questions/14994391/thinking-in-angularjs-if-i-have-a-jquery-background?rq=1" class="question-hyperlink">“Thinking in AngularJS” if I have a jQuery background?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/18874185?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/18874185/how-to-get-table-cell-values-any-where-in-the-table-using-jquery?rq=1" class="question-hyperlink">How to get table cell values any where in the table using jquery</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/20116547?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">4
+    </div>
+</a><a href="http://stackoverflow.com/questions/20116547/how-to-get-a-cells-value-in-html-table-with-jquery?rq=1" class="question-hyperlink">How to get a cells value in html table with JQuery</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/25763999?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/25763999/jquery-get-table-cell-value?rq=1" class="question-hyperlink">jQuery - Get table cell value</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-ux" title="User Experience Stack Exchange"></div><a href="http://ux.stackexchange.com/questions/89554/how-to-make-irregularly-shaped-objects-elements-look-clickable" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:102 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to make irregularly shaped objects / elements look clickable?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a href="http://codereview.stackexchange.com/questions/118217/starting-and-stopping-a-thread-for-a-command-handler" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Starting and stopping a thread for a command handler
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-boardgames" title="Board &amp; Card Games Stack Exchange"></div><a href="http://boardgames.stackexchange.com/questions/28677/does-storm-count-opponents-spells" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:147 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Does Storm count opponents' spells?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/62383/whether-to-exclude-standard-deviation-in-plot-of-outcomes-of-a-series-of-experim" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Whether to exclude standard deviation in plot of outcomes of a series of experiments?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/34566/what-happens-when-one-planet-lands-on-another" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What happens when one planet "lands" on another?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/34574/would-a-city-underground-in-the-desert-make-sense-from-a-survival-standpoint" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Would a city underground in the desert make sense from a survival standpoint?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-skeptics" title="Skeptics Stack Exchange"></div><a href="http://skeptics.stackexchange.com/questions/31521/was-isis-created-by-the-usa" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:212 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Was ISIS created by the USA?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-space" title="Space Exploration Stack Exchange"></div><a href="http://space.stackexchange.com/questions/13729/can-a-miniature-saturn-v-get-to-the-moon-and-back" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:508 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can a miniature Saturn V get to the moon and back?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/73879/can-one-enter-leomunds-tiny-hut-from-below" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can one enter Leomund's Tiny Hut from below?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-crypto" title="Cryptography Stack Exchange"></div><a href="http://crypto.stackexchange.com/questions/32299/is-this-diy-remote-lock-protocol-secure" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:281 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is this DIY remote lock protocol secure?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="http://electronics.stackexchange.com/questions/214101/how-does-this-wall-wart-switcher-work" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How does this wall-wart switcher work?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="http://workplace.stackexchange.com/questions/61177/how-to-complain-to-my-boss-about-late-payments" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to complain to my boss about late payments
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-physics" title="Physics Stack Exchange"></div><a href="http://physics.stackexchange.com/questions/232298/can-the-earth-leave-orbit-if-the-population-of-humans-and-other-live-forms-incre" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can the Earth leave orbit if the population of humans and other live forms increases?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="http://ell.stackexchange.com/questions/80094/term-for-bed-sheet-that-embraces-and-partially-ecapsulates-the-mattress" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Term for bed sheet that embraces and partially ecapsulates the mattress
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-programmers" title="Programmers Stack Exchange"></div><a href="http://programmers.stackexchange.com/questions/308515/whats-the-point-of-running-unit-tests-on-a-ci-server" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:131 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What's the point of running unit tests on a CI server?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-money" title="Personal Finance &amp; Money Stack Exchange"></div><a href="http://money.stackexchange.com/questions/58675/should-i-use-short-term-loans-to-pay-for-student-loans" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:93 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Should I use short term loans to pay for student loans?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-dba" title="Database Administrators Stack Exchange"></div><a href="http://dba.stackexchange.com/questions/127688/how-to-use-set-operation-in-case-clause-in-sql" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:182 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to use SET operation in CASE clause in SQL?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/111809/why-did-customer-services-say-using-symbols-in-a-password-is-insecure" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why did customer services say using symbols in a password is insecure?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-salesforce" title="Salesforce Stack Exchange"></div><a href="http://salesforce.stackexchange.com/questions/107137/detect-the-location-of-the-user-of-web-to-lead" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:459 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Detect the location of the user of web to lead
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="http://unix.stackexchange.com/questions/258361/convert-rows-to-columns" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Convert rows to columns
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/34602/i-duplicate-the-u-s-president-what-happens" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    I duplicate the U.S. president. What happens?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/290009/ignored-character-as-control-symbol" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Ignored character as control symbol
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/116547/how-could-nagini-seem-to-see-harry-and-hermione-through-the-invisibility-cloak-w" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How could Nagini seem to see Harry and Hermione through the invisibility cloak when they visited Godric's Hollow in Deathly Hallows?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-askubuntu" title="Ask Ubuntu"></div><a href="http://askubuntu.com/questions/727012/how-do-i-call-man-for-square-brackets-math-and-what-are-they-called" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:89 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do I call man for square brackets math and what are they called
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://stackoverflow.com/feeds/question/376081" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/376081/ivc/b197');});
+</script>
+<noscript>
+    &lt;div&gt;&lt;img src="/posts/376081/ivc/b197" class="dno" alt="" width="0" height="0"&gt;&lt;/div&gt;
+</noscript><div style="display:none" id="prettify-lang">default</div></div>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="http://blog.stackoverflow.com/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick="StackExchange.switchMobile(&quot;on&quot;)">mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="http://expressionengine.stackexchange.com/" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://movies.stackexchange.com/" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (9)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="http://chemistry.stackexchange.com/" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="http://biology.stackexchange.com/" title="biology researchers, academics, and students">Biology</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (5)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2016 Stack Exchange Inc; user contributions licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2016.1.29.3219
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        &lt;div id="noscript-warning"&gt;Stack Overflow works best with JavaScript enabled&lt;img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"&gt;&lt;/div&gt;
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    ados.run.push(function () {
+        ados_setKeywords('jquery');; ados_load();
+    });         
+</script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');
+                        ga('set', 'dimension2', '|jquery|');         ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>
+            
+    
+<img src="./How to get a table cell value using jQuery_ - Stack Overflow_files/to.gif" style="display: none;"></body></html>

@@ -1,0 +1,260 @@
+﻿@model IEnumerable<Laundry.Model.Transaction>
+
+@{
+    ViewBag.Title = "CheckStatus";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CheckStatus</h2>
+@using (Html.BeginForm("CheckStatus", "Status", FormMethod.Get))
+{
+    <div class="form-horizontal">
+
+        <div class="container" style="margin-bottom:15px;">
+            @if (Session["UpdateMessage"] != null && Session["UpdateMessage"].ToString() != "")
+            {
+                <div class="bg-success" id="message">
+                    @Session["UpdateMessage"];
+                </div>
+            }
+
+        </div>
+
+        <div class="container">
+            @*<div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+                    <tbody>
+                        <tr>
+                            <td>
+                                Search By
+                            </td>
+                            <td>
+                                Value
+                            </td>
+                            <td>
+                                Start Date
+                            </td>
+                            <td>
+                                End Date
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <select name="type" id="type" class="form-control">
+                                    <option value="Select" selected>Select</option>
+                                    <option value="TransNo">Transaction Number</option>
+                                    <option value="Name">Customer Name</option>
+                                    <option value="Date">Entry Date</option>
+                                    <option value="Type">Cloth Type</option>
+                                </select>
+                            </th>
+                            <th>
+                                <input type="text" name="value" id="value" class="form-control" />
+                            </th>
+                            <th>
+                                <input type="text" name="startdate" id="startdate" class="form-control" />
+                            </th>
+                            <th>
+                                <input type="text" name="enddate" id="enddate" class="form-control" />
+                            </th>
+                        </tr>
+                        <tr><td colspan="4"><input type="submit" value="Search" class="btn btn-default" /></td></tr>
+                    </tbody>
+
+                </table>
+                </div>*@
+            <div class="form-group">
+                @Html.Label("Transaction Number", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    <input type="text" name="MyTransNo" id="MyTransNo" class="form-control" />
+                </div>
+                <div class="col-md-7">
+                    <input type="submit" value="Check" class="btn btn-default" id="Save" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <tr>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.KeyDate)
+                    </th>
+                    <th>
+                            @Html.DisplayNameFor(model => model.TransactionNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CustomerName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CustomerTag)
+                        </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.ClothCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UnitPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Amount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AmountPaid)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ClothStatus)
+                </th>
+            </tr>
+            @if (Model != null)
+            {
+                double TotalCost=0.00;
+                foreach (var item in Model)
+                {
+                    TotalCost = TotalCost + item.Amount;
+                    <tr>
+                        @*<td>
+                                @Html.DisplayFor(modelItem => item.KeyDate)
+                            </td>*@
+                        @*<td>
+                                @Html.DisplayFor(modelItem => item.TransactionNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustomerName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustomerTag)
+                            </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ClothCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UnitPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AmountPaid)
+                        </td>
+                        @if (item.ClothStatus == "N")
+                        {
+                            <td>
+                                Not Ready
+                            </td>
+                        }
+                        @if (item.ClothStatus == "R")
+                        {
+                            <td>
+                                Ready
+                            </td>
+                        }
+                        @if (item.ClothStatus == "C")
+                        {
+                            <td>
+                                Collected
+                            </td>
+                        }
+
+                    </tr>
+                }
+                <tr><td></td><td></td><td><b>Total Cost</b></td>
+            <td>
+               <b>@TotalCost</b>
+                    
+            </td>
+            <td></td><td></td></tr>
+            }
+
+
+        </table>
+    </div>
+</div>
+@*<div class="container">
+        <a href='@Url.Action("")' class="btn btn-default" id="ready">Ready</a> |
+        <a href='@Url.Action("")' class="btn btn-default" id="collection">Collection</a>
+    </div>*@
+@*<div class="container">
+        <a href='@Url.Action("TransUpdate")' class="btn btn-default" id="Payment" style="margin-left:20px;">Payment</a>
+    </div>*@
+@section Scripts{
+    <script>
+        function confirmStatusUpdate() {
+            var r = confirm("Are you sure you want to update cloth status to READY");
+            if (r) {
+                return true;
+            }
+            else {
+                return false;
+            }
+
+        }
+
+        function confirmCollectionStatus() {
+            var r = confirm("Are you sure you want to update cloth status to COLLECTION");
+            if (r) {
+                return true;
+            }
+            else {
+                return false;
+            }
+
+        }
+
+        $(document).ready(function () {
+            $('#ready').click(function () {
+                var checkedIds = $(".ckb").filter(":checked").map(function () { return this.id; });
+                alert("" + checkedIds[0] + "," + checkedIds[1]);
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("ReadyOrCollection")",
+                    traditional: true,
+                    data: { Ids: checkedIds.toArray(), Status: "R" },
+                    success: successFunc,
+                    error: errorFunc
+                });
+
+                function successFunc(data, status) {
+                    location.reload();
+                }
+
+                function errorFunc() {
+                    alert("Error occured");
+                }
+
+            })
+
+            $('#collection').click(function () {
+                var checkedIds = $(".ckb").filter(":checked").map(function () { return this.id; });
+                alert("" + checkedIds[0] + "," + checkedIds[1]);
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("ReadyOrCollection")",
+                    traditional: true,
+                    data: { Ids: checkedIds.toArray(), Status: "C" },
+                    success: successFunc,
+                    error: errorFunc
+                });
+
+                function successFunc(data, status) {
+                    location.reload();
+                }
+
+                function errorFunc() {
+                    alert("Error occured");
+                }
+
+            })
+
+        })
+    </script>
+
+}

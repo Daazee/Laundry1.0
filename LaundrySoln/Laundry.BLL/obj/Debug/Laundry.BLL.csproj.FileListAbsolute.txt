@@ -1,0 +1,11 @@
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.BLL\bin\Debug\Laundry.BLL.dll
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.BLL\bin\Debug\Laundry.BLL.pdb
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.BLL\bin\Debug\Laundry.DAL.dll
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.BLL\bin\Debug\Laundry.Model.dll
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.BLL\bin\Debug\EntityFramework.dll
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.BLL\bin\Debug\Laundry.DAL.pdb
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.BLL\bin\Debug\Laundry.Model.pdb
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.BLL\bin\Debug\EntityFramework.xml
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.BLL\obj\Debug\Laundry.BLL.csprojResolveAssemblyReference.cache
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.BLL\obj\Debug\Laundry.BLL.dll
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.BLL\obj\Debug\Laundry.BLL.pdb

@@ -1,0 +1,5 @@
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Model\bin\Release\Laundry.Model.dll
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Model\bin\Release\Laundry.Model.pdb
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Model\obj\Release\Laundry.Model.csprojResolveAssemblyReference.cache
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Model\obj\Release\Laundry.Model.dll
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Model\obj\Release\Laundry.Model.pdb

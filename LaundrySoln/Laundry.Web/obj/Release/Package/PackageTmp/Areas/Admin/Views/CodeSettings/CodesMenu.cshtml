@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "CodesMenu";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Codes Menu</h2>
+<hr/>
+<div class="container">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav">
+            <li>@Html.ActionLink("Cloth Setup", "Create", new { Controller = "ClothingUpdate", Area = "Admin" })</li>
+            <li>@Html.ActionLink("Company Setup", "CompanyRegistration", new { Controller = "Registration", Area = "Security" })</li>
+            <li>@Html.ActionLink("Colour Setup", "CodesEntry", new { Controller = "CodeSettings", Area = "Admin", code_type="Cod001", code_type_desc = "Color" })</li>
+            <li>@Html.ActionLink("New Setup", "CodesEntry", new { Controller = "CodeSettings", Area = "Admin", code_type = "Cod001", code_type_desc = "Color" })</li>
+            @*<li>@Html.ActionLink("Price List", "PriceList", new { Controller = "ClothingUpdate", Area = "Admin" })</li>
+            <li>@Html.ActionLink("Manage Laundry Man", "ListLaundryMan", new { Controller = "ManageLaundryMan", Area = "Admin" })</li>
+            <li>@Html.ActionLink("Settings", "CodesMenu", new { Controller = "CodeSettings", Area = "Admin" })</li>*@
+        </ul>
+    </div>
+</div>

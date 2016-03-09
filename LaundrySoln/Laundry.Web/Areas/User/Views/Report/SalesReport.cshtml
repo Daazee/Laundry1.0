@@ -1,0 +1,159 @@
+﻿@model IEnumerable<Laundry.Model.PaymentDetail>
+@{
+    ViewBag.Title = "SalesReport";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>SalesReport</h2>
+@using (Html.BeginForm("SalesReport", "Report", FormMethod.Get, new { PageNo = "1", Area = "User" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="container text-capitalize" style="margin-bottom:2px; font-size:14px;">
+            @if (ViewBag.Message != null && ViewBag.Message.ToString() != "")
+                {
+                <div class="bg-danger alert alert-dismissable" style="margin-top:1px;">
+                    @ViewBag.Message
+                </div>
+            }
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Start Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="date" name="txtStartDate" id="txtStartDate" class="form-control" value="@ViewBag.StartDate" required="required" />
+                @Html.ValidationMessage("", "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("End Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="date" name="txtEndDate" id="txtEndDate" class="form-control" value="@ViewBag.EndDate" required="required" />
+                @Html.ValidationMessage("", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Print" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        @Html.ActionLink("Excel", "ExportSalesReport", new { ReportType = "Excel" })
+        @Html.ActionLink("PDF", "ExportSalesReport", new { ReportType = "pdf" })
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead style="color:blueviolet;">
+                    <tr>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.KeyDate)*@
+                            Transaction Date
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PaymentNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CustomerName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CustomerTag)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AmountPaid)
+                        </th>
+                    </tr>
+                </thead>
+
+                @if (Model != null)
+                {
+
+                    double TotalCost = 0.00;
+                    foreach (var item in Model)
+                    {
+                        TotalCost = TotalCost + item.AmountPaid;
+
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.KeyDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PaymentNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustomerName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustomerTag)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AmountPaid)
+                            </td>
+                        </tr>
+                    }
+                    <tfoot style="color:blueviolet;">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><b>Total Sales</b></td>
+                            <td>
+                                <b>@TotalCost</b>
+                            </td>
+                        </tr>
+                    </tfoot>
+                }
+
+            </table>
+        </div>
+    </div>
+    if (ViewBag.TotalPages != null)
+    {
+        double TotalPages = ViewBag.TotalPages;
+        <ul class="pagination">
+            @for (int i = 1; i <= TotalPages; i++)
+            {
+                <li class="pageno">@*@Html.ActionLink(@i.ToString(), "SalesReportPaging", new {Area="User", Controller="Report",  str_date= ViewBag.StartDate,  end_date= ViewBag.EndDate, PageNo = i })*@</li>
+                <li class="pageno">@Html.ActionLink(@i.ToString(), "SalesReport", new { Area = "User", Controller = "Report", txtStartDate = ViewBag.StartDate, txtEndDate = ViewBag.EndDate, PageNo = i })</li>
+                @*<li class="pageno">@Html.ActionLink(@i.ToString(), "", new { Area = "", Controller = "", PageNo = i })</li>*@
+            }
+
+        </ul>
+
+    }
+
+}
+@section scripts{
+    <script>
+        @*$(document).ready(function () {
+            $('.pageno').click(function () {
+                //var checkedIds = $(".ckb").filter(":checked").map(function () { return this.id; });
+                ////alert("" + checkedIds[0] + "," + checkedIds[1]);
+                alert('.pageno').text();
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("SalesReport")",
+                    traditional: true,
+                    data: { Ids: checkedIds.toArray(), Status: "R" },
+                    success: successFunc,
+                    error: errorFunc
+                });
+
+                function successFunc(data, status) {
+                    location.reload();
+                }
+
+                function errorFunc() {
+                    alert("Error occured");
+                }
+
+            })
+        })*@
+
+    </script>
+
+}

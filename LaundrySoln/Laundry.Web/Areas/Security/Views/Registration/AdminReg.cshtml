@@ -1,0 +1,86 @@
+﻿@model Laundry.Model.AdminDetail
+
+@{
+    ViewBag.Title = "AdminReg";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AdminReg</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>AdminDetail</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Admin_Surname, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Admin_Surname, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Admin_Surname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Admin_Othername, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Admin_Othername, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Admin_Othername, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Admin_Sex, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Admin_Sex, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Admin_Sex, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Admin_PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Admin_PhoneNumber, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Admin_PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Admin_Address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Admin_Address, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Admin_Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Admin_Username, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Admin_Username, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Admin_Username, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Admin_Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Admin_Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Admin_Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ConfirmPassword" class="control-label col-md-2">Confirm Password</label>
+            <div class="col-md-10">
+                <input type="password" class="form-control" name="ConfirmPassword" id="ConfirmPassword" />
+                @Html.ValidationMessage("", "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Register" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

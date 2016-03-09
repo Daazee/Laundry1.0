@@ -1,0 +1,162 @@
+﻿@model Laundry.Model.Transaction
+
+@{
+    ViewBag.Title = "TransUpdate";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Transaction Update</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="container" style="margin-bottom:15px;">
+            @if (ViewData["Message"] != null)
+            {
+                <div class="bg-success" id="message">
+                    @ViewData["Message"]
+                </div>
+            }
+
+        </div>
+        <div class="container">
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransactionNo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.TransactionNo, new { @class = "form-control", @Value= @ViewBag.MyTransNo })
+                @Html.ValidationMessageFor(model => model.TransactionNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CustomerName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.CustomerName, new { @class = "form-control", @readonly = "readonly" })
+                @Html.TextBox("CustName","", new { style = "display:none", size = "10" })
+                @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CustomerTag, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.CustomerTag, new { @class = "form-control", @readonly = "readonly" })
+                @Html.TextBox("CustTag","",new {style="display:none; size:10px" })
+                @Html.ValidationMessageFor(model => model.CustomerTag, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.ClothCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.ClothCode, new { @class = "form-control", readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.ClothCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.UnitPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.UnitPrice, new { @class = "form-control", readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.UnitPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TotalCostAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.TotalCostAmount, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.TotalCostAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AmountPaid, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.AmountPaid, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.AmountPaid, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Balance, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Balance, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Balance, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" id="update" onclick="return  ValidatePayment()" />
+                @*<a href='@Url.Action("UpdateClothStatus")' class="btn btn-default" id="Collection" style="margin-left:20px;">Collection</a>*@
+            </div>
+        </div>
+            </div>
+    </div>
+}
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+
+            $('#TransactionNo').blur(function () {
+
+                if ($('#TransactionNo').val() != "") {
+                    GetTransaction();
+                }
+            });
+
+            function GetTransaction() {
+                TransNo = $('#TransactionNo').val();
+                $.ajax({
+                    type: "GET",
+
+                    url: '@Url.Action("GetTransactionSummary", new { Controller="Transaction", Area= "User" })',
+
+                    data: {
+                        TransNo: TransNo
+                    },
+                    success: function (response) {
+                        $('#CustomerName').val((response[0].CustomerName))
+                        $('#CustomerTag').val((response[0].CustomerTag))
+                        $('#CustName').val((response[0].CustomerName))
+                        $('#CustTag').val((response[0].CustomerTag))
+                        $('#TotalCostAmount').val((response[0].TotalCostAmount))
+                        $('#AmountPaid').val((response[0].AmountPaid))
+                        $('#Balance').val((response[0].Balance))
+                    },
+
+                    failure: function (msg) {
+                        // $('#output').text(msg);
+
+                    }
+                });
+            }
+
+            $('#update').click(function (e) {
+                var totalCost = $('#TotalCostAmount').val();
+                var amountPaid = $('#AmountPaid').val();
+                if (Number(totalCost) == Number(amountPaid)) {
+                    alert("Customer has completed his payment")
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            });
+        });
+    </script>
+
+}

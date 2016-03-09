@@ -1,0 +1,12 @@
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.DAL\bin\Debug\Laundry.DAL.dll.config
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.DAL\bin\Debug\Laundry.DAL.dll
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.DAL\bin\Debug\Laundry.DAL.pdb
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.DAL\bin\Debug\EntityFramework.dll
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.DAL\bin\Debug\EntityFramework.SqlServer.dll
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.DAL\bin\Debug\Laundry.Model.dll
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.DAL\bin\Debug\Laundry.Model.pdb
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.DAL\bin\Debug\EntityFramework.xml
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.DAL\bin\Debug\EntityFramework.SqlServer.xml
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.DAL\obj\Debug\Laundry.DAL.csprojResolveAssemblyReference.cache
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.DAL\obj\Debug\Laundry.DAL.dll
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.DAL\obj\Debug\Laundry.DAL.pdb

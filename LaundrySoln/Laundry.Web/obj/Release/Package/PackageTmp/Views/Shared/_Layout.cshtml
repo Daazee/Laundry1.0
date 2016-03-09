@@ -1,0 +1,64 @@
+﻿@using Laundry.BLL
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Laundry App</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @{
+                    CompanyDetailBs NewCompanyDetailBs = new CompanyDetailBs();
+                    var ShortName = NewCompanyDetailBs.DisplayCompanyShortName();
+                    
+                        if (ShortName != null || ShortName !="")
+                        {
+                        @Html.ActionLink(ShortName, "Index", "Home", new { area = "Common" }, new { @class = "navbar-brand" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Laundry App", "Index", "Home", new { area = "Common" }, new { @class = "navbar-brand" })
+                        }
+                   
+                }
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", new { Controller = "Home", Area = "Common" })</li>
+                    <li>@Html.ActionLink("About", "About", new { Controller = "Home", Area = "" })</li>
+                    @*<li>@Html.ActionLink("Clothing", "Create", new {Controller= "ClothingUpdate", area ="Admin"} )</li>*@
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("Register", "LaundryManRegistration", new { Controller = "Registration", Area = "Security" })</li>
+                    <li>@Html.ActionLink("Log in", "Login", new { Controller = "Access", Area = "Security" })</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year -  DeeProg</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

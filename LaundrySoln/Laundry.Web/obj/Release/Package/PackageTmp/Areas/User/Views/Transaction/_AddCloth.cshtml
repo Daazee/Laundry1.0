@@ -1,0 +1,119 @@
+﻿@model Laundry.Model.Transaction
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr><td colspan="4">Cloth Entry</td></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ClothCode)
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Quantity)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Amount)
+                    </th>
+                </tr>
+                    <tr>
+                        <td>
+                            @Html.DropDownListFor(Model => Model.ClothCode, (IEnumerable<SelectListItem>)ViewBag.Code_Desc, "Select", new { @class = "form-control" })
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="UnitPrice" id="UnitPrice" disabled="disabled"/>
+                        </td>
+                        <td>
+                           @Html.TextBoxFor(model => model.Quantity, new { @class = "form-control" })
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.Amount, new { @class = "form-control", disabled = "disabled" })
+                        </td>
+                    </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#UnitPrice').val("0.00");
+            $('#ClothCode').change(function () {
+                $('#UnitPrice').val("0.00");
+                if ($('#ClothCode').val() != "") {
+                    GetPrice();
+                }
+
+                if ($('#Quantity').val() != "" && $('#UnitPrice').val() != "0.00") {
+                    GetCost();
+                    alert($('#UnitPrice').val())
+                }
+            });
+
+            $('#Quantity').blur(function () {
+             //   $('#UnitPrice').val("0.00");
+                if ($('#Quantity').val() != "" && $('#UnitPrice').val() !="0.00") {
+                    GetCost();
+                }
+            });
+
+            function GetPrice() {
+                id = $('#ClothCode').val();
+                $.ajax({
+                    type: "GET",
+
+                    url: '@Url.Action("GetUnitPrice", new { Controller="Transaction", Area= "User" })',
+
+                    data: {
+                        id: id
+                    },
+                    success: function (response) {
+                        console.log(response)
+                        $('#UnitPrice').val(response.Amount);
+                        console.log(response.Amount)
+                    },
+
+                    failure: function (msg) {
+                        // $('#output').text(msg);
+
+                    }
+                });
+
+            }
+
+            function GetCost() {
+                Quantity = $('#Quantity').val();
+                Price = $('#UnitPrice').val();
+                $.ajax({
+                    type: "GET",
+
+                    url: '@Url.Action("Cost", new { Controller="Transaction", Area= "User" })',
+
+                    data: {
+                        Quantity: Quantity,
+                        Price: Price
+                    },
+                    success: function (response) {
+                        console.log(response)
+                        $('#Amount').val(response);
+                        console.log(response)
+                    },
+
+                    failure: function (msg) {
+                        // $('#output').text(msg);
+
+                    }
+                });
+
+            }
+
+        });
+
+    </script>
+}

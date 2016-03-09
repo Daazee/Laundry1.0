@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Laundry App</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        .nav > li > a {
+            color: #fff;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav" style="color:#fff; font-size:14px;">
+                    @*<li>@Html.ActionLink("Transaction", "TransEntry", new { Controller = "Transaction", Area = "User" }, new { @class = "menuColor" })</li>*@
+                    <li class="dropdown">
+                        @*@Html.ActionLink("Remittance", "RemittanceMenu", new { Controller = "Remittance", Area = "User" })<b class="caret"></b>*@
+                        @*@Html.ActionLink("Remittance", "", new { Controller = "", Area = "" }, new  { @class="dropdown-toggle"})<b class="caret"></b>*@
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Transaction<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Transaction Entry", "TransEntry", new { Controller = "Transaction", Area = "User" }, new { @class = "menuColor" })</li>
+                            <li>@Html.ActionLink("Update Payment", "TransUpdate", new { Controller = "Transaction", Area = "User" })</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        @*@Html.ActionLink("Remittance", "RemittanceMenu", new { Controller = "Remittance", Area = "User" })<b class="caret"></b>*@
+                        @*@Html.ActionLink("Remittance", "", new { Controller = "", Area = "" }, new  { @class="dropdown-toggle"})<b class="caret"></b>*@
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Print<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Print Receipt", "PrintReceipt", new { Controller = "Transaction", Area = "User" })</li>
+                            <li>@Html.ActionLink("Sales Report", "SalesReport", new { Controller = "Report", Area = "User" })</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("Search", "Search", new { Controller = "Transaction", Area = "User" })</li>
+                    <li>@Html.ActionLink("Check Status", "CheckStatus", new { Controller = "Status", Area = "User" })</li>
+                    @*<li>@Html.ActionLink("Update Payment", "TransUpdate", new { Controller = "Transaction", Area = "User" })</li>*@
+                    <li>@Html.ActionLink("Ready/Collection", "UpdateClothStatus", new { Controller = "Transaction", Area = "User" })</li>
+                    <li class="dropdown">
+                        @*@Html.ActionLink("Remittance", "RemittanceMenu", new { Controller = "Remittance", Area = "User" })<b class="caret"></b>*@
+                        @*@Html.ActionLink("Remittance", "", new { Controller = "", Area = "" }, new  { @class="dropdown-toggle"})<b class="caret"></b>*@
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Remittance<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Remit", "Remit", new { Controller = "Remittance", Area = "User" })</li>
+                            <li>@Html.ActionLink("My Remit", "MyRemittance", new { Controller = "Remittance", Area = "User" })</li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Session["Username"] != null || Session["Username"].ToString() != "")
+                    {
+                        <li>@Html.ActionLink("Welcome " + @Session["Username"].ToString(), "Logout", new { Controller = "Access", Area = "Security" })</li>
+                    }
+                    <li>@Html.ActionLink("Logout", "Logout", new { Controller = "Access", Area = "Security" })</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year -  DeeProg</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

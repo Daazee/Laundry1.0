@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "RemittanceMenu";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Remittance Menu</h2>
+
+<div class="container">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav">
+            <li>@Html.ActionLink("Remit", "Remit", new { Controller = "Remittance", Area = "User" })</li>
+            <li>@Html.ActionLink("My Remit", "MyRemittance", new { Controller = "Remittance", Area = "User"})</li>
+            <li>@Html.ActionLink("New Setup", "", new { Controller = "Remittance", Area = "User"})</li>
+        </ul>
+    </div>
+</div>

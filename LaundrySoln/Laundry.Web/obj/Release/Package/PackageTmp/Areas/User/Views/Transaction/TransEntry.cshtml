@@ -1,0 +1,546 @@
+﻿@model Laundry.Model.Transaction
+
+@{
+    ViewBag.Title = "Trans Entry";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+@*@Html.Partial("_AddItem")*@
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="container">
+            <div class="bg-success id=" message">
+            </div>
+        </div>
+        <br />
+        @Html.Partial("_AddItem")
+        <div class="form-horizontal" role="form">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TransactionNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @*@Html.TextBoxFor(model => model.Amount, new { @class = "form-control"})*@
+                                @Html.TextBoxFor(model => model.TransactionNo, new { @class = "form-control", disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.TransactionNo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CustomerTag, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.CustomerTag, new { @class = "form-control", disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.CustomerTag, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CustomerName, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.CustomerName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.Address, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LaundryType, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.LaundryType, new List<SelectListItem>
+                   {
+                       new SelectListItem {Text="Express", Value="E" },
+                       new SelectListItem {Text="Normal", Value="N" }
+                   }, "Select", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.LaundryType, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PaymentMode, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <div id="radios">
+                                    @Html.RadioButton("radPartPayment", "P", isChecked: false)@Html.Label("Part Payment")
+                                    @Html.RadioButton("radFullPayment", "F", isChecked: false)@Html.Label("Full Payment")
+                                    @Html.TextBoxFor(model => model.PaymentMode, new { @style = "display:none", size = "4" })
+                                    @*@Html.TextBoxFor(model => model.PaymentMode, new { size = "4" })*@
+                                </div>
+                                @Html.ValidationMessageFor(model => model.PaymentMode, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CustomerPhone, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.CustomerPhone, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CustomerPhone, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.AmountPaid, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.AmountPaid, new { @class = "form-control", style = "width:30px important;" })
+                                @*@Html.ValidationMessageFor(model => model.AmountPaid, "", new { @class = "text-danger" })*@
+                            </div>
+                            @*@Html.LabelFor(model => model.Balance, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                            <label for="Balance" class="control-label col-md-1">Bal</label>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.Balance, new { @class = "form-control", disabled = "disabled" })
+                                @*@Html.ValidationMessageFor(model => model.Balance, "", new { @class = "text-danger" })*@
+                            </div>
+                        </div>
+
+                        @*<div class="form-group">
+                                @Html.LabelFor(model => model.Balance, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.Balance, new { @class = "form-control", disabled = "disabled" })
+                                    @Html.ValidationMessageFor(model => model.Balance, "", new { @class = "text-danger" })
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save All" class="btn btn-default" id="Save" />
+                        @*<input type="submit" value="Print Receipt" class="btn btn-default" id="Print" style="margin-left:20px;" />*@
+                        <a href='@Url.Action("PrintReceipt")' class="btn btn-default" id="Print" style="margin-left:20px;">Print Receipt</a>
+                        @*<a href='@Url.Action("PrintReceipt"+MyTrNo, new { MyTransNo= @Model.TransactionNo})' class="btn btn-default">Print Receipt</a>*@
+                        @*@Html.ActionLink("Print Receipt","PrintReceipt", new { @class="btn btn-default"})*@
+                        <input type="submit" value="Clear" class="btn btn-danger" id="clear" style="margin-left:20px;" />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#UnitPrice').val("0.00");
+            $('#ClothCode').change(function () {
+                $('#UnitPrice').val("0.00");
+                if ($('#ClothCode').val() != "") {
+                    GetPrice();
+                }
+
+                if ($('#Quantity').val() != "" && $('#UnitPrice').val() != "0.00") {
+                    GetCost();
+                    //alert($('#UnitPrice').val())
+                }
+            });
+
+            $('#Quantity').blur(function () {
+                //   $('#UnitPrice').val("0.00");
+                $("#Amount").val("");
+                if ($('#Quantity').val() != "" && $('#UnitPrice').val() != "0.00") {
+                    if ($.isNumeric($("#Quantity").val())) {
+                        GetCost();
+                    }
+                    else {
+                        alert("Quantity must be numeric");
+                        $('#Quantity').focus()
+                    }
+                }
+            });
+
+            function GetPrice() {
+                id = $('#ClothCode').val();
+                $.ajax({
+                    type: "GET",
+
+                    url: '@Url.Action("GetUnitPrice", new { Controller="Transaction", Area= "User" })',
+
+                    data: {
+                        id: id
+                    },
+                    success: function (response) {
+                        console.log(response)
+                        $('#UnitPrice').val(response.Amount);
+                        console.log(response.Amount)
+                    },
+
+                    failure: function (msg) {
+                        // $('#output').text(msg);
+
+                    }
+                });
+
+            }
+
+            function GetCost() {
+                Quantity = $('#Quantity').val();
+                Price = $('#UnitPrice').val();
+                $.ajax({
+                    type: "GET",
+
+                    url: '@Url.Action("Cost", new { Controller="Transaction", Area= "User" })',
+
+                    data: {
+                        Quantity: Quantity,
+                        Price: Price
+                    },
+                    success: function (response) {
+                        console.log(response)
+                        $('#Amount').val(response);
+                        console.log(response)
+                    },
+
+                    failure: function (msg) {
+                        // $('#output').text(msg);
+
+                    }
+                });
+
+            }
+
+
+            $('#AddItem').click(function () {
+
+
+
+                var ClothDesc = $("#ClothCode :selected").text();
+                var Price = $('#UnitPrice').val();
+                var Quantity = $('#Quantity').val();
+                var Amount = $('#Amount').val();
+                var Colour = $("#Colour :selected").text();
+                if (ClothDesc == "Select") {
+                    alert("Please select a cloth")
+                    $('#message').text("Please select a cloth");
+                }
+                else if (Quantity == "" || Quantity == 0) {
+                    alert("Quantity must not be empty or zero")
+                    $('#message').text("Quantity must not be empty or zero");
+                }
+                else if (Colour == "Select" || Colour == "") {
+                    alert("Please enter colour")
+                    $('#message').text("Please enter colour");
+                }
+
+                    // if (ClothDesc != "Select" && Price != "0.00" && Quantity != "" && Amount != "") {
+                else {
+                    var totalRowCount = $("#TableItem tr").length;
+                    var rowCount = $("#TableItem td").closest("tr").length;
+                    //var message = "Total Row Count: " + totalRowCount;
+                    //message += "\nRow Count: " + rowCount;
+
+                    var currentRow = totalRowCount - 1
+                    //var currentRow = totalRowCount - 2
+                    var newRow = currentRow + 1
+
+                    var newRec = [];
+                    newRec["Code"] = ClothDesc
+                    newRec["UniPri"] = Price
+                    newRec["Qty"] = Quantity
+                    newRec["Amt"] = Amount
+                    newRec["Col"] = Colour
+
+                    //newRecRow = "<tr id='" + newRow + "'><td><label id='Code" + newRow + "'>" + newRec["Code"] + "</label></td><td><label id='UniPri" + newRow + "'>" + newRec["UniPri"] + "</label></td><td><label id='Qty" + newRow + "'>" + newRec["Qty"] + "</label></td><td><label id='Amt" + newRow + "'>" + newRec["Amt"] + "</label></td><td><button id='rem" + newRow + "' class='btn btn-danger btn-sm'>Remove Item</button></td></tr>";
+
+
+                    newRecRow = "<tr id='" + newRow + "' class='myRow'><td><label id='Code" + newRow + "' class='Code'>" + newRec["Code"] + "</label></td><td><label id='UniPri" + newRow + "' id='UniPri'>" + newRec["UniPri"] + "</label></td><td><label id='Qty" + newRow + "'>" + newRec["Qty"] + "</label></td><td><label id='Amt" + newRow + "' class='Amt'>" + newRec["Amt"] + "</label></td><td><label id='Col" + newRow + "'>" + newRec["Col"] + "</label></td><td><button id='rem" + newRow + "' class='btn btn-danger btn-sm rem'>Remove Item</button></td></tr>";
+
+                    $("#TableItem tbody").append(newRecRow);
+                    totalItemsAmount();
+                    clearItem();
+                }
+            })
+
+            function CurrentDataToDb(clothDesc, unitPrice, quantity, amount, colour, headerDetail) {
+                var self = this;
+                //var clothDesc = $('#Code' + i).text();
+                //var unitPrice = $('#UniPri' + i).text();
+                //var quantity = $('#Qty' + i).text();
+                //var amount = $('#Amt' + i).text();
+                //var colour = $('#Col' + i).text();
+
+                var customerName = $('#CustomerName').val();
+                var address = $('#Address').val();
+                var laundryType = $('#LaundryType').val();
+                var paymentMode = $("#PaymentMode").val();
+                var amountPaid = $('#AmountPaid').val();
+                var balance = $("#Balance").val();
+                var totalCostAmount = $("#totalAmt").text();
+                var customerPhone = $("#CustomerPhone").val();
+                //var transactionNo = $("#TransactionNo").val();
+
+                //alert(clothDesc)
+                //alert(unitPrice)
+
+                self.ClothCode = clothDesc;
+                self.UnitPrice = unitPrice;
+                self.quantity = quantity;
+                self.Amount = amount;
+                self.CustomerName = customerName;
+                self.Colour = colour;
+                self.Address = address;
+                self.LaundryType = laundryType;
+                self.PaymentMode = paymentMode;
+                self.AmountPaid = amountPaid;
+                self.Balance = balance;
+                self.TotalCostAmount = totalCostAmount;
+                //self.TransactionNo = transactionNo;
+                self.HeaderDetail = headerDetail;
+                self.CustomerPhone = customerPhone;
+            }
+
+
+            $('#Save').click(function (e) {
+                e.preventDefault();
+                var totalRowCount = $("#TableItem tr").length;
+                if (totalRowCount > 2) {
+                    if ($('#CustomerName').val() == "") {
+                        alert("Please enter customer name");
+                        $('#CustomerName').focus();
+                    }
+                    else if ($('#Address').val() == "") {
+                        alert("Please enter customer address");
+                        $('#Address').focus();
+                    }
+                    else if ($("#LaundryType :selected").text() == "Select") {
+                        alert("Please select laundry type");
+                        $('#LaundryType').focus();
+                    }
+                    else if ($("#PaymentMode").val() == "") {
+                        alert("Please select payment mode");
+                    }
+                    else if ($("#CustomerPhone").val() == "") {
+                        alert("Please enter customer phone number");
+                        $('#CustomerPhone').focus();
+                    }
+                    else if ($("#AmountPaid").val() == "") {
+                        alert("Please enter amount paid");
+                        $('#AmountPaid').focus();
+                    }
+                    else if (!$.isNumeric($("#AmountPaid").val())) {
+                        alert("Amount paid must be numeric");
+                        $('#AmountPaid').focus();
+                    }
+                    else {
+                        var r = confirm("Are you sure you want to SAVE transaction");
+                        if (r) {
+
+                            var headerDetail = "H"
+                            $("#TableItem  tr").each(function (i, row) {
+                                if (i > 1) {
+                                    console.log((row))
+                                    //alert(i)
+                                    //alert(headerDetail)
+                                    //var tdFirst = $(this).find("td:first").html();
+                                    //var myValue = $(this).find("td:first label:first").html();
+                                    var tdFirst = $(this).find("td").eq(0).html();
+                                    var clothDesc = $(this).find("td").eq(0).find("label").text();
+                                    var unitPrice = $(this).find("td").eq(1).find("label").text();
+                                    var quantity = $(this).find("td").eq(2).find("label").text();
+                                    var amount = $(this).find("td").eq(3).find("label").text();
+                                    var colour = $(this).find("td").eq(4).find("label").text();
+
+                                    var request = new CurrentDataToDb(clothDesc, unitPrice, quantity, amount, colour, headerDetail);
+                                    $.ajax({
+                                        url: '@Url.Action("Transact", new { Controller="Transaction", Area= "User" })',
+                                        dataType: 'json',
+                                        contentType: "application/json",
+                                        type: "POST",
+                                        data: JSON.stringify(request),
+                                        success: function (response) {
+                                            $('#message').text("Re  cord save successfully");
+                                            $('#TransactionNo').val(response.transNo);
+                                            $('#MyTrNo').val(response.transNo);
+                                            $('#CustomerTag').val(response.tag);
+                                            //$('#TransactionNo').val(response.TransactionNo);
+                                            //$('#CustomerTag').val(response.CustomerTag);
+                                        }
+                                    });
+                                    headerDetail = "D"
+
+
+                                }
+
+                            })
+                        }
+                        else {
+                            return false;
+                        }
+                    }
+                }
+                else {
+                    alert("Please add cloth before saving");
+                    // $('#message').val("Please add cloth before saving");
+                }
+            });
+
+            function totalItemsAmount() {
+                var totalRowCount = $("#TableItem tr").length;
+                var totalAmount = 0;
+
+                var sum = 0;
+                var count = 0
+                $('#totalAmt').text("0");
+                $('.Amt').each(function (index, element) {
+                    totalAmount += Number($(this).text());
+                    $('#totalAmt').text(totalAmount);
+                    $('#totalLabel').text("Total Amount to be paid");
+                });
+
+            }
+
+
+            function clearItem() {
+                $("#ClothCode").val("");
+                $('#UnitPrice').val("0.00");
+                $('#Quantity').val("");
+                $('#Amount').val("");
+                $('#Colour').val("");
+            }
+
+            $("#TableItem").on('click', '.rem', function () {
+                $(this).closest('tr').remove();
+                totalItemsAmount()
+            });
+
+            $('#clear').click(function (e) {
+                //e.preventDefault(); // This will never let the form to load
+                var confirmRequest = confirm("Are you sure you want to clear data?")
+                alert(confirmRequest)
+                if(confirmRequest) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            });
+
+            $("#radPartPayment").change(function (e) {
+                e.preventDefault();
+                if ($(this).is(":checked")) {
+                    // it is checked
+                    $("#PaymentMode").val($(this).val());
+                    $("#radFullPayment").prop("checked", false);
+                }
+            })
+            $("#radFullPayment").change(function (e) {
+                e.preventDefault();
+                if ($(this).is(":checked")) {
+                    // it is checked
+                    $("#PaymentMode").val($(this).val());
+                    $("#radPartPayment").prop("checked", false);
+                }
+            })
+
+
+            $('#AmountPaid').blur(function () {
+                $('#message').text("");
+                $("#Balance").val("");
+                if ($('#AmountPaid').val() != "") {
+                    if ($("#PaymentMode").val() != "" && $('#totalAmt').text() != "") {
+                        if ($.isNumeric($("#AmountPaid").val())) {
+                            if (Number($('#totalAmt').text()) >= Number($("#AmountPaid").val())) {
+                                var bal = Number($('#totalAmt').text()) - Number($("#AmountPaid").val())
+                                $("#Balance").val(bal);
+                            }
+                            else {
+                                $('#message').text("Amount paid is greater than Total Cost");
+                            }
+
+                        }
+                        else {
+                            alert("Amount paid must be numeric");
+                            $('#AmountPaid').focus();
+                        }
+                    }
+                    else {
+                        alert("Please select payment mode and ensured that you have added clothes");
+                    }
+                }
+            });
+
+            @*//Print
+
+            $('#Print').click(function (e) {
+                e.preventDefault();
+                var totalRowCount = $("#TableItem tr").length;
+
+                if (totalRowCount > 2) {
+                    for (var i = 1; i <= totalRowCount - 2; i++) {
+
+                        var request = new PrintData(i);
+
+                        $.ajax({
+                            url: '@Url.Action("PrintReceipt", new { Controller="Transaction", Area= "User" })',
+                            dataType: 'json',
+                            contentType: "application/json",
+                            type: "POST",
+                            data: JSON.stringify(request),
+                            success: function (response) {
+                                //$('#message').text("Record save successfully");
+                                //$('#TransactionNo').val(response.transNo);
+                                //$('#CustomerTag').val(response.tag);
+                                //$('#TransactionNo').val(response.TransactionNo);
+                                //$('#CustomerTag').val(response.CustomerTag);
+                            }
+                        });
+                    }
+                }
+                else {
+                    alert("Please add cloth before saving");
+                    // $('#message').val("Please add cloth before saving");
+                }
+            });*@
+
+            function PrintData(i) {
+                var self = this;
+                var clothDesc = $('#Code' + i).text();
+                var unitPrice = $('#UniPri' + i).text();
+                var quantity = $('#Qty' + i).text();
+                var amount = $('#Amt' + i).text();
+                var colour = $('#Col' + i).text();
+                var customerName = $('#CustomerName').val();
+                var transactionNo = $('#TransactionNo').val();
+                var address = $('#Address').val();
+                var laundryType = $('#LaundryType').val();
+                var paymentMode = $("#PaymentMode").val();
+                var amountPaid = $('#AmountPaid').val();
+                var balance = $("#Balance").val();
+
+                self.ClothCode = clothDesc;
+                self.UnitPrice = unitPrice;
+                self.quantity = quantity;
+                self.Amount = amount;
+                self.CustomerName = customerName;
+                self.Colour = colour;
+                self.Address = address;
+                self.LaundryType = laundryType;
+                self.PaymentMode = paymentMode;
+                self.AmountPaid = amountPaid;
+                self.Balance = balance;
+                self.TransactionNo = transactionNo;
+            }
+        });
+
+        function confirmSaveAction() {
+            var r = confirm("Are you sure you want to SAVE transaction");
+            if (r) {
+                return true;
+            }
+            else {
+                return false;
+            }
+
+        }
+    </script>
+}
