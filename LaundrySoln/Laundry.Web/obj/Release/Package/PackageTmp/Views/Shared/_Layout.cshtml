@@ -42,7 +42,7 @@
                     @*<li>@Html.ActionLink("Clothing", "Create", new {Controller= "ClothingUpdate", area ="Admin"} )</li>*@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Register", "LaundryManRegistration", new { Controller = "Registration", Area = "Security" })</li>
+                    <li>@Html.ActionLink("Register", "LaundryManRegistration", new { Controller = "Registration", Area = "Security", ValidateReg="Y" })</li>
                     <li>@Html.ActionLink("Log in", "Login", new { Controller = "Access", Area = "Security" })</li>
                 </ul>
             </div>

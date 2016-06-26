@@ -75,8 +75,9 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger"})
+                    <span id="comparePassMsg"></span>
                 </div>
             </div>
 
@@ -85,8 +86,8 @@
                 <label for="ConfirmPassword" class="control-label col-md-2">Confirm Password</label>
                 <div class="col-md-10">
                     @*@Html.Password("ConfirmPassword",   new { @class = "form-control" })*@
-                    <input type="password" class="form-control" name="ConfirmPassword" id="ConfirmPassword" />
-                    @Html.ValidationMessage("", "", new { @class = "text-danger" })
+                    <input type="password" class="form-control" name="ConfirmPassword" id="ConfirmPassword" required="required" />
+                    <span id="compareConPassMsg"></span>
                 </div>
             </div>
             <div class="form-group">
@@ -131,6 +132,35 @@
 
             }
 
+            $('#Password').blur(function () {
+                $('#comparePassMsg').text('');
+                $('#compareConPassMsg').text('');
+                if ($('#ConfirmPassword').val() != "") {
+                    var returnMsg = comparePassword();
+                    $('#comparePassMsg').text(returnMsg);
+                }
+            });
+
+            $('#ConfirmPassword').blur(function () {
+                $('#comparePassMsg').text('');
+                $('#compareConPassMsg').text('');
+                if ($('#Password').val() != "") {
+                    var returnMsg = comparePassword();
+                    $('#compareConPassMsg').text(returnMsg);
+                }
+            });
+
+
+            function comparePassword()
+            {
+                var password = $('#Password').val();
+                var confirmPassword = $('#ConfirmPassword').val();
+                var msg = "";
+                if (password != confirmPassword) {
+                    msg = "Password does not matches";
+                }
+                return msg;
+            }
         });
 
     </script>

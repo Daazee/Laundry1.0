@@ -45,6 +45,7 @@
     <Compile Include="CodesBs.cs" />
     <Compile Include="CompanyDetailBs.cs" />
     <Compile Include="CustomerBs.cs" />
+    <Compile Include="ExpressChargeBs.cs" />
     <Compile Include="HashHelper.cs" />
     <Compile Include="LaundryManBs.cs" />
     <Compile Include="PaymentDetailBs.cs" />

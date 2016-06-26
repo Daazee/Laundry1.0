@@ -28,5 +28,7 @@ namespace Laundry.DAL
         public DbSet<Remittance> Remittances { get; set; }
 
         public DbSet<AdminDetail> AdminDetails { get; set; }
+
+        public DbSet<ExpressCharge> ExpressCharges { get; set; }
     }
 }

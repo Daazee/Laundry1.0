@@ -78,3 +78,9 @@ E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\obj\Release\RdlCompile.cache
 E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\obj\Release\RdlCompile.compiled
 E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\obj\Release\Laundry.Web.dll
 E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\obj\Release\Laundry.Web.pdb
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\bin\System.Net.Http.Formatting.dll
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\bin\System.Web.Http.dll
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\bin\System.Web.Http.WebHost.dll
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\bin\System.Net.Http.Formatting.xml
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\bin\System.Web.Http.xml
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\bin\System.Web.Http.WebHost.xml

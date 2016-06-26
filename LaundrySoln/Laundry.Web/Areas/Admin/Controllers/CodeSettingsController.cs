@@ -71,6 +71,23 @@ namespace Laundry.Web.Areas.Admin.Controllers
                 CodesObj.Codes_UserId = "admin";
                 CodesObj.Codes_KeyDate = DateTime.Today;
                 string flag = collection["Flag"];
+
+                var ExistingCode = NewCodesBs.GetByCodeValue(CodesObj.Codes_Val);
+                if (ExistingCode != null)
+                {
+                    ViewData["Message"] = "Code value already exist for descrption " + ExistingCode.Codes_Desc.ToString();
+                    ViewBag.code_type = CodesObj.Codes_Type;
+                    return View(NewCodesBs.GetByCodeType(CodesObj.Codes_Type));
+                }
+
+                var ExistingDesc = NewCodesBs.GetByCodeDesc(CodesObj.Codes_Desc);
+                if (ExistingDesc != null)
+                {
+                    ViewData["Message"] = "Code description already exist for code value " + ExistingDesc.Codes_Val.ToString();
+                    ViewBag.code_type = CodesObj.Codes_Type;
+                    return View(NewCodesBs.GetByCodeType(CodesObj.Codes_Type));
+                }
+
                 if (flag == "false")
                 {
                     CodesObj.Codes_Flag = "A";
@@ -83,15 +100,15 @@ namespace Laundry.Web.Areas.Admin.Controllers
                     NewCodesBs.Update(CodesObj);
                     ViewData["Message"] = "Record updated successfully";
                 }
-
             }
+            ViewBag.code_type = CodesObj.Codes_Type;
             return View(NewCodesBs.GetByCodeType(CodesObj.Codes_Type));
         }
 
 
 
         [HttpGet]
-        public ActionResult CodesUpdate(int  id=0)
+        public ActionResult CodesUpdate(int id = 0)
         {
             try
             {
@@ -115,13 +132,28 @@ namespace Laundry.Web.Areas.Admin.Controllers
             try
             {
 
-                CodesObj.Codes_Type = collection["Codes_Type"];
+                             CodesObj.Codes_Type = collection["Codes_Type"];
                 CodesObj.Codes_Desc = collection["Codes_Desc"];
                 CodesObj.Codes_Val = collection["Codes_Val"];
                 Codes_Type_Desc = collection["Codes_Type_Desc"];
                 CodesObj.Codes_Id = id;
                 CodesObj.Codes_UserId = "admin";
                 CodesObj.Codes_Flag = "C";
+
+                var ExistingCode = NewCodesBs.GetByCodeValue(CodesObj.Codes_Val);
+                if (ExistingCode != null)
+                {
+                    ViewData["Message"] = "Code value already exist for descrption " + ExistingCode.Codes_Desc.ToString();
+                    return RedirectToAction("CodesEntry", new { code_type = CodesObj.Codes_Type, code_type_desc = Codes_Type_Desc });
+                }
+
+                //var ExistingDesc = NewCodesBs.GetByCodeDesc(CodesObj.Codes_Desc);
+                //if (ExistingDesc != null)
+                //{
+                //    ViewData["Message"] = "Code description already exist for code value " + ExistingDesc.Codes_Val.ToString();
+                //    return RedirectToAction("CodesEntry", new { code_type = CodesObj.Codes_Type, code_type_desc = Codes_Type_Desc });
+                //}
+
                 NewCodesBs.Update(CodesObj);
                 ViewData["Message"] = "Record updated successfully";
 
@@ -129,8 +161,8 @@ namespace Laundry.Web.Areas.Admin.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Ex = ex.Message;
-                return View();
+                ViewData["Message"] = ex.Message;
+                return View(NewCodesBs.GetByCodeType(CodesObj.Codes_Type));
             }
         }
     }

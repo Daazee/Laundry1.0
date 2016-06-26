@@ -123,5 +123,6 @@ namespace Laundry.DAL
             //message = "Status updated to Ready successfully";
            // return message;
         }
+
     }
 }

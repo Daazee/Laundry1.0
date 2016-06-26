@@ -47,8 +47,12 @@ namespace Laundry.Web.Areas.Security.Controllers
         }
 
         // GET: Security/Registration/Create
-        public ActionResult LaundryManRegistration()
+        public ActionResult LaundryManRegistration(string ValidateReg="")
         {
+            if(ValidateReg!="Y")
+            {
+                return RedirectToAction("Login", new { Area = "Security", Controller = "Access" });
+            }
             return View();
         }
 
@@ -59,28 +63,26 @@ namespace Laundry.Web.Areas.Security.Controllers
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    ViewBag.UserId = Session["Username"].ToString();
-                }
-                catch
-                {
-                    Session["ConfirmLogin"] = "You must login first";
-                    return RedirectToAction("Login", new { Area = "Security", Controller = "Access" });
-                }
+                LaundryManObj.Surname = collection["Surname"];
+                LaundryManObj.Othername = collection["Othername"];
+                LaundryManObj.Sex = collection["Sex"];
+                LaundryManObj.PhoneNumber = collection["PhoneNumber"];
+                LaundryManObj.Address = collection["Address"];
+                LaundryManObj.Username = collection["Username"];
+                LaundryManObj.Password = collection["Password"];
+
 
                 if (collection["Password"] == collection["ConfirmPassword"])
                 {
+                    var result = NewLaundryManBs.GetByUsername(LaundryManObj.Username);
 
-                    LaundryManObj.Surname = collection["Surname"];
-                    LaundryManObj.Othername = collection["Othername"];
-                    LaundryManObj.Sex = collection["Sex"];
-                    LaundryManObj.PhoneNumber = collection["PhoneNumber"];
-                    LaundryManObj.Address = collection["Address"];
-                    LaundryManObj.Username = collection["Username"];
-                    LaundryManObj.Password = collection["Password"];
+                    if (result != null)
+                    {
+                        ViewData["Message"] = "Username already exist";
+                        return View(LaundryManObj);
+                    }
                     LaundryManObj.Reg_Status = "P";
-                    LaundryManObj.UserId = "admin";
+                    //LaundryManObj.UserId = "admin";
                     LaundryManObj.Keydate = DateTime.Now;
                     LaundryManObj.Flag = "A";
                     NewLaundryManBs.Insert(LaundryManObj);
@@ -135,7 +137,7 @@ namespace Laundry.Web.Areas.Security.Controllers
                 {
 
                     CompanyDetailObj.Company_Name = collection["Company_Name"];
-                    CompanyDetailObj.Company_ShortName = collection["Company_ShortName"]; 
+                    CompanyDetailObj.Company_ShortName = collection["Company_ShortName"];
                     CompanyDetailObj.Company_Address = collection["Company_Address"];
                     CompanyDetailObj.Company_Phone1 = collection["Company_Phone1"];
                     CompanyDetailObj.Company_Phone2 = collection["Company_Phone2"];

@@ -12,6 +12,7 @@
     <WebStackScaffolding_DbContextTypeFullName>Laundry.DAL.LaundryContext</WebStackScaffolding_DbContextTypeFullName>
     <ProjectView>ShowAllFiles</ProjectView>
     <NameOfLastUsedPublishProfile>LaundryWeb16022016_1.0</NameOfLastUsedPublishProfile>
+    <UseIISExpress>true</UseIISExpress>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

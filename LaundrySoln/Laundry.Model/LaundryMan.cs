@@ -23,7 +23,7 @@ namespace Laundry.Model
         [Required]
         public string Password { get; set; }
         public string Reg_Status { get; set; }
-        public string UserId { get; set; }
+        //public string UserId { get; set; }
         public string Flag { get; set; }
         public DateTime Keydate { get; set; }
     }

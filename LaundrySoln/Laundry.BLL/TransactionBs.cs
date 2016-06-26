@@ -72,7 +72,7 @@ namespace Laundry.BLL
                 {
                     if (search.TotalCostAmount != search.AmountPaid)
                     {
-                        message = "Customer has not balance is payment, please update payment.";
+                        message = "Customer has not balance his/her payment, please update payment.";
                         return message;
                     }
                     else

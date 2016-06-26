@@ -26,6 +26,16 @@ namespace Laundry.BLL
         {
             return NewCodesDA.GetByCodeType(code_type);
         }
+
+        public Codes GetByCodeValue(string code_value)
+        {
+            return NewCodesDA.GetByCodeValue(code_value);
+        }
+
+        public Codes GetByCodeDesc(string code_desc)
+        {
+            return NewCodesDA.GetByCodeDesc(code_desc);
+        }
         public void Insert(Codes CodesBsObj)
         {
             NewCodesDA.Insert(CodesBsObj);

@@ -313,6 +313,12 @@ namespace Laundry.Web {
             
             private global::System.Data.DataColumn columnBalance;
             
+            private global::System.Data.DataColumn columnExPressAmount;
+            
+            private global::System.Data.DataColumn columnTotalCostAmount;
+            
+            private global::System.Data.DataColumn columnExpr1;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TransactionsDataTable() {
@@ -484,6 +490,30 @@ namespace Laundry.Web {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ExPressAmountColumn {
+                get {
+                    return this.columnExPressAmount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TotalCostAmountColumn {
+                get {
+                    return this.columnTotalCostAmount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Expr1Column {
+                get {
+                    return this.columnExpr1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -535,7 +565,10 @@ namespace Laundry.Web {
                         double UnitPrice, 
                         string PaymentMode, 
                         double AmountPaid, 
-                        double Balance) {
+                        double Balance, 
+                        double ExPressAmount, 
+                        double TotalCostAmount, 
+                        string Expr1) {
                 TransactionsRow rowTransactionsRow = ((TransactionsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -554,7 +587,10 @@ namespace Laundry.Web {
                         UnitPrice,
                         PaymentMode,
                         AmountPaid,
-                        Balance};
+                        Balance,
+                        ExPressAmount,
+                        TotalCostAmount,
+                        Expr1};
                 rowTransactionsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTransactionsRow);
                 return rowTransactionsRow;
@@ -601,6 +637,9 @@ namespace Laundry.Web {
                 this.columnPaymentMode = base.Columns["PaymentMode"];
                 this.columnAmountPaid = base.Columns["AmountPaid"];
                 this.columnBalance = base.Columns["Balance"];
+                this.columnExPressAmount = base.Columns["ExPressAmount"];
+                this.columnTotalCostAmount = base.Columns["TotalCostAmount"];
+                this.columnExpr1 = base.Columns["Expr1"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -640,6 +679,12 @@ namespace Laundry.Web {
                 base.Columns.Add(this.columnAmountPaid);
                 this.columnBalance = new global::System.Data.DataColumn("Balance", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBalance);
+                this.columnExPressAmount = new global::System.Data.DataColumn("ExPressAmount", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExPressAmount);
+                this.columnTotalCostAmount = new global::System.Data.DataColumn("TotalCostAmount", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalCostAmount);
+                this.columnExpr1 = new global::System.Data.DataColumn("Expr1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExpr1);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnTransactionId}, true));
                 this.columnTransactionId.AutoIncrement = true;
@@ -664,6 +709,10 @@ namespace Laundry.Web {
                 this.columnPaymentMode.MaxLength = 2147483647;
                 this.columnAmountPaid.AllowDBNull = false;
                 this.columnBalance.AllowDBNull = false;
+                this.columnExPressAmount.AllowDBNull = false;
+                this.columnTotalCostAmount.AllowDBNull = false;
+                this.columnExpr1.ReadOnly = true;
+                this.columnExpr1.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1043,6 +1092,44 @@ namespace Laundry.Web {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double ExPressAmount {
+                get {
+                    return ((double)(this[this.tableTransactions.ExPressAmountColumn]));
+                }
+                set {
+                    this[this.tableTransactions.ExPressAmountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double TotalCostAmount {
+                get {
+                    return ((double)(this[this.tableTransactions.TotalCostAmountColumn]));
+                }
+                set {
+                    this[this.tableTransactions.TotalCostAmountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Expr1 {
+                get {
+                    try {
+                        return ((string)(this[this.tableTransactions.Expr1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Expr1\' in table \'Transactions\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTransactions.Expr1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTransactionNoNull() {
                 return this.IsNull(this.tableTransactions.TransactionNoColumn);
             }
@@ -1159,6 +1246,18 @@ namespace Laundry.Web {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetPaymentModeNull() {
                 this[this.tableTransactions.PaymentModeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsExpr1Null() {
+                return this.IsNull(this.tableTransactions.Expr1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetExpr1Null() {
+                this[this.tableTransactions.Expr1Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -1338,16 +1437,18 @@ namespace Laundry.Web.TransactionDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("PaymentMode", "PaymentMode");
             tableMapping.ColumnMappings.Add("AmountPaid", "AmountPaid");
             tableMapping.ColumnMappings.Add("Balance", "Balance");
+            tableMapping.ColumnMappings.Add("ExPressAmount", "ExPressAmount");
+            tableMapping.ColumnMappings.Add("TotalCostAmount", "TotalCostAmount");
+            tableMapping.ColumnMappings.Add("Expr1", "Expr1");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Transactions] WHERE (([TransactionId] = @Original_TransactionI" +
-                "d))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [Transactions] WHERE (([TransactionId] = @Original_TransactionId))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TransactionId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TransactionId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Transactions] ([TransactionNo], [CustomerName], [ClothCode], [Amount], [LaundryType], [UserId], [Flag], [KeyDate], [Quantity], [CustomerTag], [Colour], [Address], [UnitPrice], [PaymentMode], [AmountPaid], [Balance]) VALUES (@TransactionNo, @CustomerName, @ClothCode, @Amount, @LaundryType, @UserId, @Flag, @KeyDate, @Quantity, @CustomerTag, @Colour, @Address, @UnitPrice, @PaymentMode, @AmountPaid, @Balance)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Transactions] ([TransactionNo], [CustomerName], [ClothCode], [Amount], [LaundryType], [UserId], [Flag], [KeyDate], [Quantity], [CustomerTag], [Colour], [Address], [UnitPrice], [PaymentMode], [AmountPaid], [Balance], [ExPressAmount], [TotalCostAmount]) VALUES (@TransactionNo, @CustomerName, @ClothCode, @Amount, @LaundryType, @UserId, @Flag, @KeyDate, @Quantity, @CustomerTag, @Colour, @Address, @UnitPrice, @PaymentMode, @AmountPaid, @Balance, @ExPressAmount, @TotalCostAmount)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TransactionNo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TransactionNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CustomerName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -1365,9 +1466,11 @@ namespace Laundry.Web.TransactionDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PaymentMode", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PaymentMode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AmountPaid", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AmountPaid", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Balance", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Balance", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ExPressAmount", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExPressAmount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TotalCostAmount", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TotalCostAmount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Transactions] SET [TransactionNo] = @TransactionNo, [CustomerName] = @CustomerName, [ClothCode] = @ClothCode, [Amount] = @Amount, [LaundryType] = @LaundryType, [UserId] = @UserId, [Flag] = @Flag, [KeyDate] = @KeyDate, [Quantity] = @Quantity, [CustomerTag] = @CustomerTag, [Colour] = @Colour, [Address] = @Address, [UnitPrice] = @UnitPrice, [PaymentMode] = @PaymentMode, [AmountPaid] = @AmountPaid, [Balance] = @Balance WHERE (([TransactionId] = @Original_TransactionId))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Transactions] SET [TransactionNo] = @TransactionNo, [CustomerName] = @CustomerName, [ClothCode] = @ClothCode, [Amount] = @Amount, [LaundryType] = @LaundryType, [UserId] = @UserId, [Flag] = @Flag, [KeyDate] = @KeyDate, [Quantity] = @Quantity, [CustomerTag] = @CustomerTag, [Colour] = @Colour, [Address] = @Address, [UnitPrice] = @UnitPrice, [PaymentMode] = @PaymentMode, [AmountPaid] = @AmountPaid, [Balance] = @Balance, [ExPressAmount] = @ExPressAmount, [TotalCostAmount] = @TotalCostAmount WHERE (([TransactionId] = @Original_TransactionId))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TransactionNo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TransactionNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CustomerName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -1385,6 +1488,8 @@ namespace Laundry.Web.TransactionDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PaymentMode", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PaymentMode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AmountPaid", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AmountPaid", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Balance", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Balance", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ExPressAmount", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ExPressAmount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TotalCostAmount", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TotalCostAmount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TransactionId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TransactionId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
@@ -1401,9 +1506,12 @@ namespace Laundry.Web.TransactionDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT TransactionId, TransactionNo, CustomerName, ClothCode, Amount, LaundryType" +
-                ", UserId, Flag, KeyDate, Quantity, CustomerTag, Colour, Address, UnitPrice, Paym" +
-                "entMode, AmountPaid, Balance FROM dbo.Transactions";
+            this._commandCollection[0].CommandText = @"SELECT        TransactionId, TransactionNo, CustomerName, ClothCode, Amount, LaundryType, UserId, Flag, KeyDate, Quantity, CustomerTag, Colour, Address, UnitPrice, PaymentMode, AmountPaid, Balance, ExPressAmount, 
+                         TotalCostAmount,
+                             (SELECT        Surname + ' ' + Othername AS Expr1
+                               FROM            LaundryMen
+                               WHERE        (Username = Transactions.UserId)) AS Expr1
+FROM            Transactions";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1502,7 +1610,9 @@ namespace Laundry.Web.TransactionDataSetTableAdapters {
                     double UnitPrice, 
                     string PaymentMode, 
                     double AmountPaid, 
-                    double Balance) {
+                    double Balance, 
+                    double ExPressAmount, 
+                    double TotalCostAmount) {
             if ((TransactionNo == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -1569,6 +1679,8 @@ namespace Laundry.Web.TransactionDataSetTableAdapters {
             }
             this.Adapter.InsertCommand.Parameters[14].Value = ((double)(AmountPaid));
             this.Adapter.InsertCommand.Parameters[15].Value = ((double)(Balance));
+            this.Adapter.InsertCommand.Parameters[16].Value = ((double)(ExPressAmount));
+            this.Adapter.InsertCommand.Parameters[17].Value = ((double)(TotalCostAmount));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1606,6 +1718,8 @@ namespace Laundry.Web.TransactionDataSetTableAdapters {
                     string PaymentMode, 
                     double AmountPaid, 
                     double Balance, 
+                    double ExPressAmount, 
+                    double TotalCostAmount, 
                     int Original_TransactionId) {
             if ((TransactionNo == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
@@ -1673,7 +1787,9 @@ namespace Laundry.Web.TransactionDataSetTableAdapters {
             }
             this.Adapter.UpdateCommand.Parameters[14].Value = ((double)(AmountPaid));
             this.Adapter.UpdateCommand.Parameters[15].Value = ((double)(Balance));
-            this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(Original_TransactionId));
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((double)(ExPressAmount));
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((double)(TotalCostAmount));
+            this.Adapter.UpdateCommand.Parameters[18].Value = ((int)(Original_TransactionId));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {

@@ -66,7 +66,7 @@
             <div class="form-group">
                 @Html.Label("Transaction Number", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-3">
-                    <input type="text" name="MyTransNo" id="MyTransNo" class="form-control" />
+                    <input type="text" name="MyTransNo" id="MyTransNo" class="form-control" required="required" />
                 </div>
                 <div class="col-md-7">
                     <input type="submit" value="Check" class="btn btn-default" id="Save" />
@@ -114,9 +114,11 @@
             @if (Model != null)
             {
                 double TotalCost=0.00;
+                double ExpressAmount = 0.00;
                 foreach (var item in Model)
                 {
                     TotalCost = TotalCost + item.Amount;
+                    ExpressAmount = item.ExPressAmount;
                     <tr>
                         @*<td>
                                 @Html.DisplayFor(modelItem => item.KeyDate)
@@ -166,9 +168,23 @@
 
                     </tr>
                 }
+                if (ExpressAmount != 0)
+                {
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td><b>Express Amount</b></td>
+                    <td>
+                        <b>@ExpressAmount</b>
+
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                }
                 <tr><td></td><td></td><td><b>Total Cost</b></td>
             <td>
-               <b>@TotalCost</b>
+               <b>@(TotalCost+ExpressAmount)</b>
                     
             </td>
             <td></td><td></td></tr>

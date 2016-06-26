@@ -65,7 +65,7 @@
             <div class="form-group">
                 @Html.Label("Transaction Number", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-3">
-                    <input type="text" name="MyTransNo" id="MyTransNo" class="form-control"/>
+                    <input type="text" name="MyTransNo" id="MyTransNo" class="form-control" />
                 </div>
                 <div class="col-md-7">
                     <input type="submit" value="Search" class="btn btn-default" id="Save" />
@@ -84,9 +84,9 @@
                         @*Checked Boxes*@
                     </th>
                     @*
-                <th>
+                        <th>
 
-                </th>*@
+                        </th>*@
                     <th>
                         @Html.DisplayNameFor(model => model.KeyDate)
                     </th>
@@ -121,21 +121,24 @@
                         @Html.DisplayNameFor(model => model.ClothStatus)
                     </th>
                     <th></th>
+                    <th style="display:none"></th>
                 </tr>
             </thead>
             @if (Model != null)
             {
+                double ExpressAmount = 0.00;
                 foreach (var item in Model)
                 {
+                    ExpressAmount = item.ExPressAmount;
                     <tr>
                         <td>
                             <input type="checkbox" class="ckb" name="updckb" id="@item.TransactionId" value="@item.TransactionId" />
                         </td>
                         @* Updating Status one by one*@
                         @*<td>
-                            @Html.ActionLink("Ready", "UpdateStatusReady", new { Transid = item.TransactionId, status = "R" }, new { onclick = "return confirmStatusUpdate()" })|
-                            @Html.ActionLink("Collection", "UpdateStatusReady", new { Transid = item.TransactionId, status = "C" }, new { onclick = "return confirmCollectionStatus()" })
-                        </td>*@
+                                @Html.ActionLink("Ready", "UpdateStatusReady", new { Transid = item.TransactionId, status = "R" }, new { onclick = "return confirmStatusUpdate()" })|
+                                @Html.ActionLink("Collection", "UpdateStatusReady", new { Transid = item.TransactionId, status = "C" }, new { onclick = "return confirmCollectionStatus()" })
+                            </td>*@
                         <td>
                             @Html.DisplayFor(modelItem => item.KeyDate)
                         </td>
@@ -166,15 +169,45 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.AmountPaid)
                         </td>
-                        <td>
+                        @*<td>
                             @Html.DisplayFor(modelItem => item.ClothStatus)
-                        </td>
+                        </td>*@
+                        @if (item.ClothStatus == "N")
+                        {
+                            <td>
+                                Not Ready
+                            </td>
+                        }
+                        @if (item.ClothStatus == "R")
+                        {
+                            <td>
+                                Ready
+                            </td>
+                        }
+                        @if (item.ClothStatus == "C")
+                        {
+                            <td>
+                                Collected
+                            </td>
+                        }
                         <td>
-                            @if(item.ClothStatus=="R" && item.TotalCostAmount > item.AmountPaid)
+                            @if (item.ClothStatus == "R" && item.TotalCostAmount > item.AmountPaid)
                             {
-                                @Html.ActionLink("Proceed to Payment","TransUpdate", new  { Area="User", Controller= "Transaction", transNo= item.TransactionNo}, new { @class = "btn btn-default" })
+                                @Html.ActionLink("Proceed to Payment", "TransUpdate", new { Area = "User", Controller = "Transaction", transNo = item.TransactionNo }, new { @class = "btn btn-default" })
                             }
                         </td>
+                        <td style="display:none">
+                            <input type="text" id="phoneno" name="phoneno" value="@item.CustomerPhone" />
+                            <input type="text" id="clothstatus" name="clothstatus" value="@item.ClothStatus" />
+                        </td>
+                    </tr>
+                }
+                if (ExpressAmount != 0)
+                {
+                    <tr>
+                        <td colspan="8" style="text-align:right;"><b>Express Amount</b></td>
+                        <td>@ExpressAmount</td>
+                        <td colspan="5"></td>
                     </tr>
                 }
             }
@@ -183,81 +216,121 @@
     </div>
 </div>
 <div class="container">
-    <a href='@Url.Action("")' class="btn btn-default" id="ready" onclick="return confirmStatusUpdate()">Ready</a> |
-    <a href='@Url.Action("")' class="btn btn-default" id="collection" onclick="return confirmCollectionStatus()">Collection</a>
+    @*<a href='@Url.Action("")' class="btn btn-default" id="ready" onclick="return confirmStatusUpdate()">Ready</a> |
+    <a href='@Url.Action("")' class="btn btn-default" id="collection" onclick="return confirmCollectionStatus()">Collection</a>*@
+    <a href='@Url.Action("")' class="btn btn-default" id="ready">Ready</a> |
+    <a href='@Url.Action("")' class="btn btn-default" id="collection">Collection</a>
+  
     @*<a href='@Url.Action("TransUpdate" ,new { Area="User", Controller="Transaction" })' class="btn btn-default" id="collection" style="margin-left:100px;">Proceed to Payment</a>*@
 </div>
-@*<div class="container">
-    <a href='@Url.Action("TransUpdate")' class="btn btn-default" id="Payment" style="margin-left:20px;">Payment</a>
-</div>*@
 @section Scripts{
     <script>
-        function confirmStatusUpdate() {
-            var r = confirm("Are you sure you want to update cloth status to READY");
-            if (r) {
-                return true;
-            }
-            else {
-                return false;
-            }
+        //function confirmStatusUpdate() {
+        //    var r = confirm("Are you sure you want to update cloth status to READY");
+        //    if (r) {
+        //        return true;
+        //    }
+        //    else {
+        //        return false;
+        //    }
 
-        }
+        //}
 
-        function confirmCollectionStatus() {
-            var r = confirm("Are you sure you want to update cloth status to COLLECTION");
-            if (r) {
-                return true;
-            }
-            else {
-                return false;
-            }
+        //function confirmCollectionStatus() {
+        //    var r = confirm("Are you sure you want to update cloth status to COLLECTION");
+        //    if (r) {
+        //        return true;
+        //    }
+        //    else {
+        //        return false;
+        //    }
 
-        }
+        //}
 
         $(document).ready(function () {
-            $('#ready').click(function () {
-            var checkedIds = $(".ckb").filter(":checked").map(function () { return this.id; });
-            //alert("" + checkedIds[0] + "," + checkedIds[1]);
-            $.ajax({
-                type: "POST",
-                url:"@Url.Action("ReadyOrCollection")",
-                traditional:true,
-                data:{Ids:checkedIds.toArray(),Status:"R"},
-                success:successFunc,
-                error:errorFunc
-            });
-
-                function successFunc(data, status) {
-                    location.reload();
-                }
-
-                function errorFunc() {
-                    alert("Error occured");
-                }
-
-            })
-
-                $('#collection').click(function () {
-                    var checkedIds = $(".ckb").filter(":checked").map(function () { return this.id; });
-                    //alert("" + checkedIds[0] + "," + checkedIds[1]);
+            $('#ready').click(function (e) {
+                e.preventDefault();
+                var checkedIds = $(".ckb").filter(":checked").map(function () { return this.id; });
+                //alert("" + checkedIds[0] + "," + checkedIds[1]);
+                alert("ready")
+                var r = confirm("Are you sure you want to update cloth status to READY");
+                if (r) {
                     $.ajax({
                         type: "POST",
-                        url:"@Url.Action("ReadyOrCollection")",
-                        traditional:true,
-                    data:{Ids:checkedIds.toArray(),Status:"C"},
-                    success:successFunc,
-                    error:errorFunc
-                });
+                        url: "@Url.Action("ReadyOrCollection")",
+                        traditional: true,
+                        data: { Ids: checkedIds.toArray(), Status: "R" },
+                        success: successFunc,
+                        error: errorFunc
+                    });
 
-                function successFunc(data, status) {
-                    location.reload();
+                    function successFunc(data, status) {
+                        alert("success")
+                        console.log("Sending message")
+                        sendMessage();
+                        
+                        location.reload();
+                        
+                    }
+
+                    function errorFunc() {
+                        alert("Error occured");
+                    }
                 }
-
-                function errorFunc() {
-                    alert("Error occured");
+                else {
                 }
 
             })
+           
+            $('#collection').click(function (e) {
+                e.preventDefault();
+                var checkedIds = $(".ckb").filter(":checked").map(function () { return this.id; });
+                var r = confirm("Are you sure you want to update cloth status to COLLECTION");
+                if (r) {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("ReadyOrCollection")",
+                        traditional: true,
+                        data: { Ids: checkedIds.toArray(), Status: "C" },
+                        success: successFunc,
+                        error: errorFunc
+                    });
+
+                    function successFunc(data, status) {
+                        location.reload();
+                    }
+
+                    function errorFunc() {
+                        alert("Error occured");
+                    }
+                }
+            })
+
+            function sendMessage() {
+                var phoneNo = $('#phoneno').val();
+                var clothStatus = $('#clothstatus').val();
+                phoneNo = "234" + phoneNo.substring(1)
+                console.log(phoneNo);
+                console.log("Cloth Status is: " + clothStatus);
+                if (clothStatus == "N") {
+                    $.ajax({
+                        type: "GET",
+                        url: "http://api.smartsmssolutions.com/smsapi.php?username=DeeProg&password=Tremendous@1&sender=Laundry&recipient=" + phoneNo + "&message=Your Cloth is ready for collection. Thanks for your patronage.",
+                        success: successFunc,
+                        error: errorFunc
+                    });
+
+                    function successFunc(response) {
+                        console.log("Message sending response" + response);
+                    }
+
+                    function errorFunc(error) {
+                        //alert("Error occured");//To avoid alerting if no internet connection.
+                        console.log(error);
+                    }
+                }
+
+            }
 
         })
     </script>

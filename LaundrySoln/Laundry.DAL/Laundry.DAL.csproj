@@ -55,6 +55,7 @@
     <Compile Include="CodesDA.cs" />
     <Compile Include="CompanyDetailDA.cs" />
     <Compile Include="CustomerDA.cs" />
+    <Compile Include="ExpressChargeDA.cs" />
     <Compile Include="LaundryContext.cs" />
     <Compile Include="LaundryManDA.cs" />
     <Compile Include="Migrations\Configuration.cs" />

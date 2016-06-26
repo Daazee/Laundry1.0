@@ -4,6 +4,7 @@ namespace Laundry.DAL.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using Laundry.Model;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Laundry.DAL.LaundryContext>
     {
@@ -28,6 +29,40 @@ namespace Laundry.DAL.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+           /* LaundryMan LaundryManObj = new LaundryMan();
+            LaundryManObj.LaundryManId = 1;
+            LaundryManObj.Surname = "Administrator";
+            LaundryManObj.Othername = "Administrator";
+            LaundryManObj.Sex = "Male";
+            LaundryManObj.PhoneNumber = "07053900429";
+            LaundryManObj.Address = "TBA";
+            LaundryManObj.Username = "admin";
+            LaundryManObj.Password = "admin";
+            LaundryManObj.Reg_Status = "AD";
+            LaundryManObj.Flag = "A";
+            LaundryManObj.Keydate = DateTime.Now;
+            context.LaundryMans.AddOrUpdate(c => c.Username, LaundryManObj);
+
+
+            CompanyDetail CompanyDetailObj = new CompanyDetail();
+            CompanyDetailObj.Company_Code = "Test";
+            CompanyDetailObj.Company_Name = "Test Laundry";
+            CompanyDetailObj.Company_ShortName = "Test Laundry";
+            CompanyDetailObj.Company_Address = "Lagos";
+            CompanyDetailObj.Company_Phone1 = "07053900429";
+            CompanyDetailObj.Company_Phone2 = "07053900429";
+            CompanyDetailObj.Company_Email = "test@yahoo.com";
+            CompanyDetailObj.Company_Username = "admin";
+            CompanyDetailObj.Company_Password = "admin";
+            CompanyDetailObj.Company_Flag = "A";
+            CompanyDetailObj.Company_KeyDate = DateTime.Now;
+            context.CompanyDetails.AddOrUpdate(c => c.Company_Username, CompanyDetailObj);*/
+
+
+
+
+
         }
     }
 }

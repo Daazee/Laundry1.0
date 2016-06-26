@@ -12,7 +12,7 @@
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="container">
-            <div class="bg-success id=" message">
+            <div class="bg-success" id="message">
             </div>
         </div>
         <br />
@@ -63,7 +63,8 @@
                    {
                        new SelectListItem {Text="Express", Value="E" },
                        new SelectListItem {Text="Normal", Value="N" }
-                   }, "Select", new { @class = "form-control" })
+                   }, "Select", new { @class = "form-control", style = "width: 100px !important; float:left; margin-right:30px;" })
+                                <input type="text" class="form-control" id="ExpressAmount" name="ExpressAmount" style="width: 100px !important; float:left; display:none" />
                                 @Html.ValidationMessageFor(model => model.LaundryType, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -155,6 +156,43 @@
                     else {
                         alert("Quantity must be numeric");
                         $('#Quantity').focus()
+                    }
+                }
+            });
+
+
+            //Setting Express Value Visibility
+            $('#LaundryType').change(function () {
+                $("#ExpressAmount").val("0.00");
+                $('#AmountPaid').val('');
+                $("#Balance").val('');
+                if ($('#LaundryType').val() != "") {
+                    if ($("#LaundryType").val() == "E") {
+                        $("#ExpressAmount").show();
+                    }
+                    else {
+                        $("#ExpressAmount").hide();
+                    }
+                }
+            });
+
+            $('#ExpressAmount').blur(function () {
+                if ($('#ExpressAmount').val() != "") {
+                    if (!$.isNumeric($("#ExpressAmount").val())) {
+                        alert("Express Amount must be numeric");
+                        $('#ExpressAmount').focus()
+                    }
+                    else {
+                        if ($('#totalAmt').text() != "" && $("#AmountPaid").val() != "") {
+                            var totalAmount = Number($('#totalAmt').text()) + Number($('#ExpressAmount').val());
+                            if (totalAmount >= Number($("#AmountPaid").val())) {
+                                var bal = totalAmount - Number($("#AmountPaid").val())
+                                $("#Balance").val(bal);
+                            }
+                            else {
+                                $('#message').text("Amount paid is greater than Total Cost");
+                            }
+                        }
                     }
                 }
             });
@@ -277,6 +315,7 @@
                 var balance = $("#Balance").val();
                 var totalCostAmount = $("#totalAmt").text();
                 var customerPhone = $("#CustomerPhone").val();
+                var exPressAmount = $('#ExpressAmount').val();
                 //var transactionNo = $("#TransactionNo").val();
 
                 //alert(clothDesc)
@@ -294,9 +333,9 @@
                 self.AmountPaid = amountPaid;
                 self.Balance = balance;
                 self.TotalCostAmount = totalCostAmount;
-                //self.TransactionNo = transactionNo;
                 self.HeaderDetail = headerDetail;
                 self.CustomerPhone = customerPhone;
+                self.ExPressAmount = exPressAmount;
             }
 
 
@@ -316,6 +355,11 @@
                         alert("Please select laundry type");
                         $('#LaundryType').focus();
                     }
+                    else if ($("#LaundryType :selected").text() == "Express"
+                            && $("#ExpressAmount").val() == "0.00" || $("#ExpressAmount").val() == "") {
+                        alert("Please enter Express Amount");
+                        $('#ExpressAmount').focus();
+                    }
                     else if ($("#PaymentMode").val() == "") {
                         alert("Please select payment mode");
                     }
@@ -329,6 +373,10 @@
                     }
                     else if (!$.isNumeric($("#AmountPaid").val())) {
                         alert("Amount paid must be numeric");
+                        $('#AmountPaid').focus();
+                    }
+                    else if ($("#Balance").val() == "") {
+                        alert("Balance must not be empty, please ensure transaction is entered correctly");
                         $('#AmountPaid').focus();
                     }
                     else {
@@ -358,7 +406,7 @@
                                         type: "POST",
                                         data: JSON.stringify(request),
                                         success: function (response) {
-                                            $('#message').text("Re  cord save successfully");
+                                            $('#message').text("Record save successfully");
                                             $('#TransactionNo').val(response.transNo);
                                             $('#MyTrNo').val(response.transNo);
                                             $('#CustomerTag').val(response.tag);
@@ -414,14 +462,14 @@
             });
 
             $('#clear').click(function (e) {
-                //e.preventDefault(); // This will never let the form to load
-                var confirmRequest = confirm("Are you sure you want to clear data?")
-                alert(confirmRequest)
-                if(confirmRequest) {
-                    return true;
+                e.preventDefault(); // This will never let the form to load
+                var confirmRequest = confirm("Are you sure you want to clear data?");
+                if (confirmRequest) {
+                    // return true;
+                    ClearAll();
                 }
                 else {
-                    return false;
+                    //return false;
                 }
             });
 
@@ -449,8 +497,9 @@
                 if ($('#AmountPaid').val() != "") {
                     if ($("#PaymentMode").val() != "" && $('#totalAmt').text() != "") {
                         if ($.isNumeric($("#AmountPaid").val())) {
-                            if (Number($('#totalAmt').text()) >= Number($("#AmountPaid").val())) {
-                                var bal = Number($('#totalAmt').text()) - Number($("#AmountPaid").val())
+                            var totalAmount = Number($('#totalAmt').text()) + Number($('#ExpressAmount').val());
+                            if (totalAmount >= Number($("#AmountPaid").val())) {
+                                var bal = totalAmount - Number($("#AmountPaid").val())
                                 $("#Balance").val(bal);
                             }
                             else {
@@ -464,6 +513,7 @@
                         }
                     }
                     else {
+                        $("#AmountPaid").val('');
                         alert("Please select payment mode and ensured that you have added clothes");
                     }
                 }
@@ -541,6 +591,31 @@
                 return false;
             }
 
+        }
+
+        function ClearAll() {
+            $("#ClothCode").val("");
+            $('#UnitPrice').val("0.00");
+            $('#Quantity').val("");
+            $('#Amount').val("");
+            $('#Colour').val("");
+            $('#TransactionNo').val("");
+            $('#CustomerTag').val("");
+            $('#CustomerName').val("");
+            $('#Address').val("");
+            $('#LaundryType').val("");
+            $("#PaymentMode").val("");
+            $("#radPartPayment").prop("checked", false);
+            $("#radFullPayment").prop("checked", false);
+            $("#CustomerPhone").val("");
+            $('#AmountPaid').val("");
+            $("#Balance").val("");
+            $("#totalAmt").text("");
+            $("#totalLabel").text("");
+            $('#ExpressAmount').val('0.00');
+            $('#ExpressAmount').hide();
+            $('#message').text("");
+            $("#TableItem  tr").remove(".myRow"); //Remove all row from a table with class myRow
         }
     </script>
 }

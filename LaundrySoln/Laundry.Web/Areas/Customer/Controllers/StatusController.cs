@@ -19,6 +19,15 @@ namespace Laundry.Web.Areas.Customer.Controllers
         [HttpGet]
         public ActionResult CheckStatus(string MyTransNo)
         {
+            try
+            {
+                ViewBag.UserId = Session["Username"].ToString();
+            }
+            catch
+            {
+                Session["ConfirmLogin"] = "You must login first";
+                return RedirectToAction("Login", new { Area = "Security", Controller = "Access" });
+            }
             Session["MyTransNo"] = MyTransNo;
             return View(NewTransactionBs.GetByTransactionNo(MyTransNo));
         }

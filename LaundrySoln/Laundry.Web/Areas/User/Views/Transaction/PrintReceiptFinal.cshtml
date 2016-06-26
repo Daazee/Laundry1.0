@@ -6,8 +6,10 @@
 }
 
 <h2>Print Receipt</h2>
-@Html.ActionLink("Excel", "ExportTo", new { ReportType = "Excel" })
-@Html.ActionLink("PDF", "ExportTo", new { ReportType = "pdf" })
+@*@Html.ActionLink("Excel", "ExportTo", new { ReportType = "Excel" })
+@Html.ActionLink("PDF", "ExportTo", new { ReportType = "pdf" })*@
+@Html.ActionLink("Excel", "ExportReceiptsTo", new { ReportType = "Excel" })
+@Html.ActionLink("PDF", "ExportReceiptsTo", new { ReportType = "pdf" })
 <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover">
         <thead style="color:blueviolet;">

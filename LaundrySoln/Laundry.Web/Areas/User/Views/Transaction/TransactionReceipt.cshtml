@@ -1,0 +1,198 @@
+﻿@model Laundry.Model.Receipt
+@{
+    ViewBag.Title = "TransactionReceipt";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<style>
+    body{
+        width:500px !important;
+    }
+</style>
+@*<h2>TransactionReceipt</h2>*@
+<div class="table-responsive" style="font-size:22px;">
+    <table border="0">
+        <thead>
+            <tr>
+                <th colspan="5">
+                    <center> @Model.CompanyDetailReceipt.First().Company_Name</center> 
+                </th>
+            </tr>
+        </thead>
+                <tr>
+                    <td colspan="5">
+                        <center>  @Model.CompanyDetailReceipt.First().Company_Address</center>
+</td>
+                </tr>
+        <tr>
+            <td colspan="5">
+                <center>  @Model.CompanyDetailReceipt.First().Company_Email</center>
+</td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <center>  @Model.CompanyDetailReceipt.First().Company_Phone1 , @Model.CompanyDetailReceipt.First().Company_Phone2 </center>
+
+</td>
+        </tr>
+        <tr>
+            <td colspan="5" align="right">@DateTime.Now</td>
+        </tr>
+        <tr>
+            <td colspan="5">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td>Receipt Number</td>
+            <td colspan="4">@Model.TransactionReceipt.First().TransactionNo</td>
+        </tr>
+        <tr>
+            <td>Tag Number</td>
+            <td colspan="4">@Model.TransactionReceipt.First().CustomerTag</td>
+        </tr>
+        <tr>
+            <td>Customer Name</td>
+            <td colspan="4">@Model.TransactionReceipt.First().CustomerName</td>
+        </tr>
+        <tr>
+            <td>Customer Address</td>
+            <td colspan="4">@Model.TransactionReceipt.First().Address</td>
+        </tr>
+        <tr>
+            <td>Service Type</td>
+            @if (Model.TransactionReceipt.First().LaundryType == "N")
+            {
+            <td colspan="4">Normal</td>
+            }
+            else if (Model.TransactionReceipt.First().LaundryType == "E")
+            {
+                <td colspan="4">Express</td>
+            }
+            else
+            {
+                <td colspan="4">Nil</td>
+            }
+        </tr>
+        <tr>
+            <td>Attendant Name</td>
+            <td colspan="4">@Model.LaundryManReceipt.Othername</td>
+        </tr>
+    </table>
+</div>
+<div class="table-responsive">
+    @*<table class="table table-striped table-bordered table-hover">*@
+        <table border="1" style="font-size:20px;">
+            <thead>
+                <tr>
+                    <th>
+                        Cloth Description
+                    </th>
+                    <th>
+                        Colour
+                    </th>
+                    <th style="text-align:right !important">
+                        Rate
+                    </th>
+                    <th style="text-align:center !important">
+                        Qty
+                    </th>
+                    <th astyle="text-align:right !important">
+                        Amount
+                    </th>
+                </tr>
+            </thead>
+            @if (Model.TransactionReceipt != null)
+            {
+                double TotalCost = 0.00;
+                double ExpressAmount = 0.00;
+                double TotalAmountPaid = 0.00;
+                double Balance = 0.00;
+                foreach (var item in Model.TransactionReceipt)
+                {
+                    TotalCost = TotalCost + item.Amount;
+                    ExpressAmount = item.ExPressAmount;
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ClothCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Colour)
+                        </td>
+                        <td align="right">
+                            @Html.DisplayFor(modelItem => item.UnitPrice)
+                        </td>
+                        <td align="center">
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        </td>
+                        <td align="right">
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.TransactionNo)
+                        </td>*@
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.CustomerName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerTag)
+                        </td>*@
+
+
+
+
+                    </tr>
+                }
+                if (ExpressAmount != 0)
+                {
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td colspan="2"><b>Express Amount</b></td>
+                        <td align="right">
+                            <b>@ExpressAmount</b>
+
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2"><b>Total Cost</b></td>
+                    <td align="right">
+                        <b>@(TotalCost + ExpressAmount)</b>
+
+                    </td>
+                </tr>
+                foreach(var item in Model.PaymentDetailReceipt)
+                {
+                    TotalAmountPaid = TotalAmountPaid + item.AmountPaid;
+                }
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2"><b>Amount Paid</b></td>
+                    <td align="right">
+                        <b>@TotalAmountPaid</b>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2"><b>Balance</b></td>
+                    <td align="right">
+                        <b>@(TotalCost + ExpressAmount- TotalAmountPaid)</b>
+                        
+                    </td>
+                </tr>
+            }
+
+        </table>
+</div>
+

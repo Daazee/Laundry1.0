@@ -3,7 +3,10 @@
     ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
-
+<style>
+    .turn-off-display{
+        display:none;
+    }    </style>
 <h2>Search</h2>
 @using (Html.BeginForm())
 {
@@ -13,44 +16,45 @@
                 <thead>
                     <tr>
                         <td>
-                            Search By
+                            <label>Search By</label>
                         </td>
-                        <td>
-                            Value
+                        <td class="others-toggle turn-off-display">
+                            <label id="DisplaySearchName" name="DisplaySearchName">Value</label>
                         </td>
-                        <td>
-                            Start Date
+                        <td class="date-toggle turn-off-display">
+                            <label> Start Date</label>
                         </td>
-                        <td colspan="2">
-                            End Date
+                        <td class="date-toggle turn-off-display">
+                            <label>End Date</label>
                         </td>
+                        <td></td>
                     </tr>
                 </thead>
-                    <tr>
-                        <th>
-                            <select name="type" id="type" class="form-control">
-                                <option value="Select" selected>Select</option>
-                                <option value="TransNo">Transaction Number</option>
-                                <option value="Name">Customer Name</option>
-                                <option value="Date">Entry Date</option>
-                                <option value="Type">Cloth Type</option>
-                            </select>
-                        </th>
-                        <th>
-                            <input type="text" name="value" id="value" class="form-control" />
-                        </th>
-                        <th>
-                            <input type="date" name="startdate" id="startdate" class="form-control" />
-                        </th>
-                        <th>
-                            <input type="date" name="enddate" id="enddate" class="form-control" />
-                        </th>
-                        <th>
-                            <input type="submit" value="Search" class="btn btn-default" />
-                        </th>
-                    </tr>
-                    @*<tr><td colspan="4"><input type="submit" value="Search" class="btn btn-default" /></td></tr>*@
-                
+                <tr>
+                    <th>
+                        <select name="type" id="type" class="form-control">
+                            <option value="Select" selected>Select</option>
+                            <option value="TransNo">Transaction Number</option>
+                            <option value="Name">Customer Name</option>
+                            <option value="Date">Entry Date</option>
+                            <option value="Type">Cloth Type</option>
+                        </select>
+                    </th>
+                    <th class="others-toggle turn-off-display">
+                        <input type="text" name="value" id="value" class="form-control" />
+                    </th>
+                    <th class="date-toggle turn-off-display">
+                        <input type="date" name="startdate" id="startdate" class="form-control" />
+                    </th>
+                    <th class="date-toggle turn-off-display">
+                        <input type="date" name="enddate" id="enddate" class="form-control" />
+                    </th>
+                    <th>
+                        <input type="submit" value="Search" class="btn btn-default" />
+                    </th>
+                </tr>
+                @*<tr><td colspan="4"><input type="submit" value="Search" class="btn btn-default" /></td></tr>*@
+
 
             </table>
         </div>
@@ -90,97 +94,149 @@
                         @Html.DisplayNameFor(model => model.ClothStatus)
                     </th>
                     @* <th>
-                    @Html.DisplayNameFor(model => model.LaundryType)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Colour)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Address)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PaymentMode)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.AmountPaid)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Balance)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.UserId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Flag)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.KeyDate)
-                </th>*@
+                            @Html.DisplayNameFor(model => model.LaundryType)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Colour)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Address)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PaymentMode)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AmountPaid)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Balance)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UserId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Flag)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.KeyDate)
+                        </th>*@
                 </tr>
-                </thead>
-                @if (Model != null)
+            </thead>
+            @if (Model != null)
             {
                 foreach (var item in Model)
                 {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.KeyDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TransactionNo)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CustomerName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CustomerTag)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ClothCode)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.UnitPrice)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Quantity)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Amount)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ClothStatus)
-                            </td>
-                            @*<td>
-                            @Html.DisplayFor(modelItem => item.LaundryType)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Colour)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Address)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PaymentMode)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.AmountPaid)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Balance)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.UserId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Flag)
-                        </td>
+                    <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.KeyDate)
-                        </td>*@
-                        </tr>
-                    }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TransactionNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerTag)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ClothCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UnitPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        @*<td>
+                                @Html.DisplayFor(modelItem => item.ClothStatus)
+                            </td>*@
+                        @if (item.ClothStatus == "N")
+                        {
+                            <td>
+                                Not Ready
+                            </td>
+                        }
+                        @if (item.ClothStatus == "R")
+                        {
+                            <td>
+                                Ready
+                            </td>
+                        }
+                        @if (item.ClothStatus == "C")
+                        {
+                            <td>
+                                Collected
+                            </td>
+                        }
+                        @*<td>
+                                @Html.DisplayFor(modelItem => item.LaundryType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Colour)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PaymentMode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AmountPaid)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Balance)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Flag)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.KeyDate)
+                            </td>*@
+                    </tr>
                 }
+            }
 
-</table>
+        </table>
     </div>
 </div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            //Setting Express Value Visibility
+            $('#type').change(function () {
+                var selectedValue = $("#type").val();
+                if (selectedValue == "TransNo") {
+                    $("#DisplaySearchName").text('Transaction Number');
+                    $(".others-toggle").show();
+                    $(".date-toggle").hide();
+                }
+                else if (selectedValue == "Name") {
+                    $("#DisplaySearchName").text('Customer Name');
+                    $(".others-toggle").show();
+                    $(".date-toggle").hide();
+                }
+                else if (selectedValue == "Type") {
+                    $("#DisplaySearchName").text('Cloth Type');
+                    $(".others-toggle").show();
+                    $(".date-toggle").hide();
+                }
+                else if (selectedValue == "Date") {
+                    //$("#DisplaySearchName").text('Value');
+                    $(".date-toggle").show();
+                    $(".others-toggle").hide();
+                }
+                else {
+                    $(".date-toggle").hide();
+                    $(".others-toggle").hide();
+                }
+            });
+        });
+    </script>
+}

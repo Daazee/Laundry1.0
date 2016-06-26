@@ -54,6 +54,8 @@ namespace Laundry.Model
         [Display(Name = "Total Cost")]
         public double TotalCostAmount { get; set; }
 
+        public double ExPressAmount { get; set; }
+
         public string ClothStatus { get; set; }
         public string UserId { get; set; }
 

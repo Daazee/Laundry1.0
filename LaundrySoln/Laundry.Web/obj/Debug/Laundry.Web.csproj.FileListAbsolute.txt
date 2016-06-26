@@ -74,7 +74,13 @@ E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\bin\Microsoft.Owin.Security.
 E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\bin\Microsoft.Owin.Security.Twitter.xml
 E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\obj\Debug\Laundry.Web.csprojResolveAssemblyReference.cache
-E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\obj\Debug\RdlCompile.cache
-E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\obj\Debug\RdlCompile.compiled
 E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\obj\Debug\Laundry.Web.dll
 E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\obj\Debug\Laundry.Web.pdb
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\bin\System.Net.Http.Formatting.dll
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\bin\System.Web.Http.dll
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\bin\System.Web.Http.WebHost.dll
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\bin\System.Net.Http.Formatting.xml
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\bin\System.Web.Http.xml
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\bin\System.Web.Http.WebHost.xml
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\obj\Debug\RdlCompile.cache
+E:\CSharpMVCProject\MVCApps\LaundrySoln\Laundry.Web\obj\Debug\RdlCompile.compiled

@@ -25,6 +25,18 @@ namespace Laundry.DAL
         {
             return context.Code.Where(c => c.Codes_Type == code_type).ToList();
         }
+
+        public Codes GetByCodeValue(string code_val)
+        {
+            //Get Code Description By Code Value
+            return context.Code.Where(c => c.Codes_Val == code_val).FirstOrDefault();
+        }
+
+        public Codes GetByCodeDesc(string code_desc)
+        {
+            //Get Code Description By Code Value
+            return context.Code.Where(c => c.Codes_Desc == code_desc).FirstOrDefault();
+        }
         public void Insert(Codes CodeObj)
         {
             context.Code.Add(CodeObj);

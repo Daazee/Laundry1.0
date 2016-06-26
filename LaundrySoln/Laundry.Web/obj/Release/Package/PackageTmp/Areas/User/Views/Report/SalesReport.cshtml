@@ -12,17 +12,26 @@
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="container text-capitalize" style="margin-bottom:2px; font-size:14px;">
+            @if (ViewBag.Message != null && ViewBag.Message.ToString() != "")
+                {
+                <div class="bg-danger alert alert-dismissable" style="margin-top:1px;">
+                    @ViewBag.Message
+                </div>
+            }
+        </div>
+
         <div class="form-group">
             @Html.Label("Start Date", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="date" name="txtStartDate" id="txtStartDate" class="form-control" value="@ViewBag.StartDate" />
+                <input type="date" name="txtStartDate" id="txtStartDate" class="form-control" value="@ViewBag.StartDate" required="required" />
                 @Html.ValidationMessage("", "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             @Html.Label("End Date", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="date" name="txtEndDate" id="txtEndDate" class="form-control" value="@ViewBag.EndDate" />
+                <input type="date" name="txtEndDate" id="txtEndDate" class="form-control" value="@ViewBag.EndDate" required="required" />
                 @Html.ValidationMessage("", "", new { @class = "text-danger" })
             </div>
         </div>

@@ -21,6 +21,10 @@ namespace Laundry.Web.Areas.User.Controllers
         private CodesBs NewCodesBs = new CodesBs();
         Transaction TransactionObj = new Transaction();
         PaymentDetail PaymentDetailObj = new PaymentDetail();
+        ExpressCharge ExPressChargeObj = new ExpressCharge();
+        ExpressChargeBs NewExPressChargeBs = new ExpressChargeBs();
+        LaundryManBs NewLaundryManBs = new LaundryManBs();
+        Receipt receipt = new Receipt();
         // GET: User/Transaction
         public ActionResult Index()
         {
@@ -94,19 +98,34 @@ namespace Laundry.Web.Areas.User.Controllers
 
             if (TransObj.HeaderDetail == "H")
             {
-                PaymentDetailObj.PaymentNo = TransactionObj.TransactionNo = GenerateTransNo();
+                ExPressChargeObj.ExPressNo = PaymentDetailObj.PaymentNo = TransactionObj.TransactionNo = GenerateTransNo();
                 PaymentDetailObj.CustomerName = TransactionObj.CustomerName = TransObj.CustomerName;
                 PaymentDetailObj.AmountPaid = TransactionObj.AmountPaid = Convert.ToDouble(TransObj.AmountPaid);
                 PaymentDetailObj.CustomerTag = TransactionObj.CustomerTag = TransObj.CustomerName + "/" + Convert.ToInt32(TransactionObj.TransactionNo.Split('/')[2]).ToString();
-                PaymentDetailObj.Flag = TransactionObj.Flag = "A";
-                PaymentDetailObj.KeyDate = TransactionObj.KeyDate = DateTime.Today;
-                PaymentDetailObj.UserId = TransactionObj.UserId = ViewBag.UserId;
+                ExPressChargeObj.ExpressFlag = PaymentDetailObj.Flag = TransactionObj.Flag = "A";
+                ExPressChargeObj.ExpressKeyDate = PaymentDetailObj.KeyDate = TransactionObj.KeyDate = DateTime.Today;
+                ExPressChargeObj.ExpressUserId = PaymentDetailObj.UserId = TransactionObj.UserId = ViewBag.UserId;
                 NewPaymentDetailBs.Insert(PaymentDetailObj);
+
+                if (TransObj.ExPressAmount.ToString() != "" && TransObj.ExPressAmount != 0)
+                {
+                    ExPressChargeObj.ExpressCharge_Id = Guid.NewGuid().ToString("N");
+                    ExPressChargeObj.ExpressAmount = Convert.ToDouble(TransObj.ExPressAmount);
+                    NewExPressChargeBs.Insert(ExPressChargeObj);
+                }
+
             }
             else
             {
                 TransactionObj.TransactionNo = Session["TransactionNo"].ToString();
             }
+
+            if (TransObj.ExPressAmount.ToString() == "")
+            {
+                TransObj.ExPressAmount = 0;
+            }
+
+
             TransactionObj.ClothCode = TransObj.ClothCode;
             TransactionObj.Amount = Convert.ToDouble(TransObj.Amount);
             TransactionObj.UnitPrice = Convert.ToDouble(TransObj.UnitPrice);
@@ -115,7 +134,8 @@ namespace Laundry.Web.Areas.User.Controllers
             TransactionObj.LaundryType = TransObj.LaundryType;
             TransactionObj.Quantity = TransObj.Quantity;
             TransactionObj.Balance = Convert.ToDouble(TransObj.Balance);
-            TransactionObj.TotalCostAmount = Convert.ToDouble(TransObj.TotalCostAmount);
+            TransactionObj.TotalCostAmount = Convert.ToDouble(TransObj.TotalCostAmount) + Convert.ToDouble(TransObj.ExPressAmount);
+            TransactionObj.ExPressAmount = Convert.ToDouble(TransObj.ExPressAmount);
             TransactionObj.PaymentMode = TransObj.PaymentMode;
             //ViewBag.GenTransNo = TransactionObj.TransactionNo;
             string[] SplitResult = TransactionObj.TransactionNo.Split('/');
@@ -221,7 +241,8 @@ namespace Laundry.Web.Areas.User.Controllers
         {
             // return View(NewTransactionBs.GetByTransactionNo(frm["TransNo"]));
             Session["FinalTransNo"] = frm["TransactionNo"];
-            return RedirectToAction("PrintReceiptFinal");
+         //   return RedirectToAction("PrintReceiptFinal"); 
+                 return RedirectToAction("TransactionReceipt");
         }
 
         public FileResult ExportTo(string ReportType = "Pdf")
@@ -247,7 +268,59 @@ namespace Laundry.Web.Areas.User.Controllers
             Response.AddHeader("content-disposition", "attachment; filename=Receipt'" + DateTime.Now + "'." + fileNameExtension);
             return File(renderedBytes, fileNameExtension);
         }
+        public FileResult ExportReceiptsTo(string ReportType = "Pdf")
+        {
+            LocalReport localReport = new LocalReport();
+            localReport.SubreportProcessing += new SubreportProcessingEventHandler(LocalReport_SubreportProcessing);
+            localReport.ReportPath = Server.MapPath("~/Reports/TransactionReceiptNew.rdlc");
+            ReportDataSource reportDtSource = new ReportDataSource();
+            DataRow dr;
+            ReportDataSet ds = new ReportDataSet();
+            LaundryMan LaundryManObj = new LaundryMan();
+            string GetAttendantOnce = "Y";
+            foreach (var receiptitem in NewTransactionBs.GetByTransactionNo(Session["FinalTransNo"].ToString()))
+            {
+                dr = ds.Tables["ReceiptDT"].Rows.Add();
+                dr["TransactionNo"] = receiptitem.TransactionNo;
+                dr["CustomerName"] = receiptitem.CustomerName;
+                dr["ClothCode"] = receiptitem.ClothCode;
+                dr["Amount"] = receiptitem.Amount;
+                dr["LaundryType"] = receiptitem.LaundryType;
+                dr["Quantity"] = receiptitem.Quantity;
+                dr["CustomerTag"] = receiptitem.CustomerTag; ;
 
+                dr["Colour"] = receiptitem.Colour;
+                dr["Address"] = receiptitem.Address;
+                dr["UnitPrice"] = receiptitem.UnitPrice;
+                dr["AmountPaid"] = receiptitem.AmountPaid;
+                dr["Balance"] = receiptitem.Balance;
+                dr["ExPressAmount"] = receiptitem.ExPressAmount;
+                dr["TotalCostAmount"] = receiptitem.TotalCostAmount;
+
+                //Prevent visiting LaundryMan Dbset more than once
+                if (GetAttendantOnce == "Y")
+                {
+                    LaundryManObj = NewLaundryManBs.GetByUsername(receiptitem.UserId);
+                    GetAttendantOnce = "N";
+                }
+                dr["AttendantSurname"] = LaundryManObj.Surname;
+                dr["AttendantOthername"] = LaundryManObj.Othername;
+            }
+            reportDtSource.Name = "ReportDataSet";
+            reportDtSource.Value = ds.Tables["ReceiptDT"];
+            localReport.DataSources.Add(reportDtSource);
+            string reportType = ReportType;
+            string mimeType;
+            string encoding;
+            string fileNameExtension = (ReportType == "Excel") ? "xlsx" : "pdf";
+            Warning[] warnings;
+            string[] streams;
+            byte[] renderedBytes;
+            renderedBytes = localReport.Render(reportType, "", out mimeType, out encoding, out fileNameExtension,
+                                            out streams, out warnings);
+            Response.AddHeader("content-disposition", "attachment; filename=Receipt" + DateTime.Now + "." + fileNameExtension);
+            return File(renderedBytes, fileNameExtension);
+        }
         [HttpGet]
         public ActionResult PrintReceiptFinal(string TNo)
         {
@@ -263,6 +336,46 @@ namespace Laundry.Web.Areas.User.Controllers
             if (Session["FinalTransNo"] != null)
             {
                 return View(NewTransactionBs.GetByTransactionNo(Session["FinalTransNo"].ToString()));
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult TransactionReceipt(string TNo)
+        {
+            string GetAttendantOnce = "Y";
+            LaundryMan LaundryManReceipt = new LaundryMan();
+           List<Transaction> TransactionReceipt = new List<Transaction>();
+           List<CompanyDetail> CompanyDetailReceipt = new List<CompanyDetail>();
+            List<PaymentDetail> PaymentDetailReceipt = new List<PaymentDetail>();
+            try
+            {
+                ViewBag.UserId = Session["Username"].ToString();
+            }
+            catch
+            {
+                Session["ConfirmLogin"] = "You must login first";
+                return RedirectToAction("Login", new { Area = "Security", Controller = "Access" });
+            }
+            if (Session["FinalTransNo"] != null)
+            {
+                TransactionReceipt = NewTransactionBs.GetByTransactionNo(Session["FinalTransNo"].ToString()).ToList();
+                CompanyDetailReceipt = NewCompanyDetailBs.ListAll().ToList();
+                PaymentDetailReceipt = NewPaymentDetailBs.GetByPaymentNo(Session["FinalTransNo"].ToString()).ToList();
+                if (GetAttendantOnce == "Y")
+                {
+                    foreach(var item in TransactionReceipt)
+                    LaundryManReceipt = NewLaundryManBs.GetByUsername(item.UserId);
+                    GetAttendantOnce = "N"; 
+                }
+                //dr["AttendantSurname"] = LaundryManObj.Surname;
+                //dr["AttendantOthername"] = LaundryManObj.Othername;
+                receipt.TransactionReceipt = TransactionReceipt;
+                receipt.CompanyDetailReceipt = CompanyDetailReceipt;
+                receipt.LaundryManReceipt = LaundryManReceipt;
+                receipt.PaymentDetailReceipt = PaymentDetailReceipt;
+                return View(receipt);
+
             }
             return View();
         }
@@ -286,7 +399,7 @@ namespace Laundry.Web.Areas.User.Controllers
         [HttpPost]
         public ActionResult Search(string type, string value, string startdate, string enddate)
         {
-            
+
 
             DateTime FinalStartDate = DateTime.Today, FinalEndDate = DateTime.Today;
             if (startdate != "" && DateTime.TryParse(startdate, out FinalStartDate))
@@ -316,7 +429,7 @@ namespace Laundry.Web.Areas.User.Controllers
 
 
         [HttpGet]
-        public ActionResult TransUpdate(string transNo="")
+        public ActionResult TransUpdate(string transNo = "")
         {
             try
             {
@@ -507,14 +620,14 @@ namespace Laundry.Web.Areas.User.Controllers
             }
             var result = NewPaymentDetailBs.GetByPaymentDate_UserId(date, userId);
             double totalsales = 0.0;
-            if(result !=null)
+            if (result != null)
             {
-                foreach(var amount in result)
+                foreach (var amount in result)
                 {
                     totalsales += amount.AmountPaid;
                 }
             }
-           
+
             return Json(totalsales, JsonRequestBehavior.AllowGet);
         }
     }
