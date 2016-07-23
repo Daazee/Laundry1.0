@@ -26,6 +26,10 @@ namespace Laundry.Model
         [Display(Name = "Phone No")]
         public string CustomerPhone { get; set; }
 
+        [EmailAddress]
+        [Display(Name ="Email Address")]
+        public string EmailAddress { get; set; }
+
         [Display(Name ="Cloth Type")]
         public string ClothCode { get; set; }
 
@@ -65,5 +69,9 @@ namespace Laundry.Model
         public DateTime KeyDate { get; set; }
 
         public string HeaderDetail { get; set; }//H or D. The first entry is H while subsequent entry is D.
+
+        [Display(Name ="Collection Date")]
+        public DateTime CollectionDate { get; set; }
+
     }
 }

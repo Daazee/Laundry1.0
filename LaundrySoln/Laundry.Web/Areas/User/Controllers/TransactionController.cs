@@ -9,6 +9,7 @@ using Microsoft.Reporting.WebForms;
 using System.IO;
 using System.Data;
 using Laundry.Web.ReportDataset;
+//using System.Web.Http.Cors;
 
 namespace Laundry.Web.Areas.User.Controllers
 {
@@ -143,6 +144,8 @@ namespace Laundry.Web.Areas.User.Controllers
             TransactionObj.AmountPaid = Convert.ToDouble(TransObj.AmountPaid);
             TransactionObj.CustomerTag = TransObj.CustomerName + "/" + Convert.ToInt32(SplitResult[2]).ToString();
             TransactionObj.CustomerPhone = TransObj.CustomerPhone;
+            TransactionObj.EmailAddress = TransObj.EmailAddress;
+            TransactionObj.CollectionDate = TransObj.CollectionDate;
             TransactionObj.ClothStatus = "N";//New Cloth;
             TransactionObj.Flag = "A";
             TransactionObj.KeyDate = DateTime.Today;
@@ -441,6 +444,7 @@ namespace Laundry.Web.Areas.User.Controllers
                 return RedirectToAction("Login", new { Area = "Security", Controller = "Access" });
             }
             ViewBag.MyTransNo = transNo;
+          //  return View(NewTransactionBs.GetSingleTransaction(transNo));
             return View();
         }
 
@@ -533,6 +537,7 @@ namespace Laundry.Web.Areas.User.Controllers
             return RedirectToAction("UpdateClothStatus", new { MyTransNo = Session["MyTransNo"] });
         }
 
+       // [AllowCrossSiteJson]
         public void ReadyOrCollection(List<int> Ids, string Status)
         {
             //using (TransactionScope Trans = new TransactionScope())

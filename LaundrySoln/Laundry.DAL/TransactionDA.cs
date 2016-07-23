@@ -124,5 +124,9 @@ namespace Laundry.DAL
            // return message;
         }
 
+        public Transaction GetSingleTransaction(string TransNo)
+        {
+            return context.Transactions.Where(c => c.TransactionNo == TransNo).FirstOrDefault();
+        }
     }
 }

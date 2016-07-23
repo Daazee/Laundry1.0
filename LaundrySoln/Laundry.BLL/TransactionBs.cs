@@ -110,5 +110,11 @@ namespace Laundry.BLL
             message = "Status updated to Ready successfully";
             return message;
         }
+
+        public Transaction GetSingleTransaction(string TNo)
+        {
+            return NewTransactionDA.GetSingleTransaction(TNo);
+        }
     }
+
 }
